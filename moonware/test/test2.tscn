@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7nral3ojea77"]
+
+[ext_resource type="Texture2D" uid="uid://cwdkgeluwqoix" path="res://icon.svg" id="1_3nuw8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(603, 440)
+texture = ExtResource("1_3nuw8")
+
+[node name="lose" type="Button" parent="."]
+offset_left = 349.0
+offset_top = 420.0
+offset_right = 389.0
+offset_bottom = 451.0
+text = "lose"
+
+[node name="win" type="Button" parent="."]
+offset_left = 433.0
+offset_top = 404.0
+offset_right = 469.0
+offset_bottom = 435.0
+text = "win"
