@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://w4fkroo78can"]
+
+[node name="MainMenu" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
