@@ -1,4 +1,4 @@
-extends Node2D
+extends Microgame
 
 signal win
 signal lose
