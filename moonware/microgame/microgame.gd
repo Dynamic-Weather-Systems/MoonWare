@@ -19,7 +19,17 @@ class_name Microgame
 ## The short message that briefly shows when your game starts. Try to limit its length to under 30 characters.
 @export var message : String = "Message!"
 
+@onready var countdown = Timer.new()
 
 # SIGNALS
 signal win_game
 signal lose_game
+
+# FUNCTIONS
+func _on_countdown_timeout():
+	pass
+
+func _ready() -> void:
+	add_child(countdown)
+	countdown.timeout.connect(_on_countdown_timeout)
+	countdown.one_shot = true
