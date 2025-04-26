@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7grbl2wlmhjd"]
+
+[ext_resource type="Script" path="res://microgame/microgame.gd" id="1_1wmvl"]
+
+[node name="Microgame" type="Node"]
+script = ExtResource("1_1wmvl")
