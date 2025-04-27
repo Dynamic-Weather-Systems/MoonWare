@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=7 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Texture2D" uid="uid://b8h1go2aktdv8" path="res://Assets/Art/television.png" id="2_glg3e"]
 [ext_resource type="Shader" path="res://Assets/Shaders/vhs_shader.gdshader" id="3_a3ver"]
 [ext_resource type="FontFile" uid="uid://bkyjfo6cxbj1v" path="res://Assets/Fonts/BLASTIMO SANS.ttf" id="3_r5jth"]
-[ext_resource type="Texture2D" uid="uid://ba6w8e82k2don" path="res://Assets/Art/ResTest/lowcontrastmedres11.jpg" id="4_l8s0x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os521"]
 shader = ExtResource("3_a3ver")
@@ -98,7 +97,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_l8s0x")
 expand_mode = 1
 
 [node name="MainMenuUI" type="Control" parent="TVTextureRect/MarginContainer/Control/Screen"]
