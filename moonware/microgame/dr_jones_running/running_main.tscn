@@ -1,11 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8ambg17ap7ae"]
+[gd_scene load_steps=20 format=3 uid="uid://b8ambg17ap7ae"]
 
 [ext_resource type="Texture2D" uid="uid://ce8fjwy701m08" path="res://Assets/MinigameBoundary.jpg" id="1_8oidl"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_main.gd" id="1_ju8ao"]
 [ext_resource type="Texture2D" uid="uid://bytn102h8va70" path="res://Assets/Art/lava-cave-wall.jpg" id="2_i75os"]
-[ext_resource type="Texture2D" uid="uid://ge55mgtrlejo" path="res://Assets/Art/stalactite-and-stalagmite-isolated-on-transparent-background-png.webp" id="3_08wcf"]
+[ext_resource type="Texture2D" uid="uid://bvnrts7e3gxw3" path="res://Assets/Art/stalactite-and-stalagmite-isolated-on-transparent-background-png-edited.png" id="4_7d17j"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/character_body_2d.gd" id="5_pp7yv"]
 [ext_resource type="Texture2D" uid="uid://dh1coe3qmfhmt" path="res://Assets/Art/d1c4mut-6db0241c-6952-42d2-8d49-793f34733d25.png" id="5_srgow"]
+[ext_resource type="Script" path="res://microgame/dr_jones_running/rigid_body_2d.gd" id="7_oyoud"]
+[ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="8_487lx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qdpmj"]
+radius = 9.0
+height = 118.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86j4d"]
 atlas = ExtResource("5_srgow")
@@ -71,6 +77,9 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh32a"]
+radius = 489.174
+
 [node name="running_main" type="Node2D"]
 script = ExtResource("1_ju8ao")
 
@@ -83,10 +92,11 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(1, 0)
 
 [node name="cave_backround" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 1
-motion_scale = Vector2(2, 2)
+modulate = Color(0.669315, 0.669315, 0.669315, 1)
+motion_scale = Vector2(1, 0)
 motion_mirroring = Vector2(2469, 0)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -98,9 +108,9 @@ centered = false
 region_rect = Rect2(81, 0, 480, 400)
 
 [node name="cave_backround2" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 1
+modulate = Color(0.669315, 0.669315, 0.669315, 1)
 position = Vector2(1235, 0)
-motion_scale = Vector2(2, 2)
+motion_scale = Vector2(1, 0)
 motion_mirroring = Vector2(2469, 0)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -112,35 +122,65 @@ centered = false
 flip_h = true
 region_rect = Rect2(81, 0, 480, 400)
 
+[node name="player" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 1
+position = Vector2(1, 0)
+motion_scale = Vector2(1, 0)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="ParallaxBackground/player"]
+z_index = 1
+position = Vector2(436, 342)
+script = ExtResource("5_pp7yv")
+SPEED = 210.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/player/CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_qdpmj")
+
+[node name="Camera2D" type="Camera2D" parent="ParallaxBackground/player/CharacterBody2D"]
+
+[node name="animated" type="AnimatedSprite2D" parent="ParallaxBackground/player/CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_5brnx")
+autoplay = "default"
+frame_progress = 0.647796
+
 [node name="slagmite" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 3
-motion_scale = Vector2(3, 3)
-motion_mirroring = Vector2(778, 0)
+z_index = 2
+motion_scale = Vector2(2, 0)
+motion_mirroring = Vector2(561, 0)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="stalagmite" type="Sprite2D" parent="ParallaxBackground/slagmite"]
 modulate = Color(0, 0, 0, 1)
-texture_repeat = 3
-position = Vector2(0, -182)
-scale = Vector2(1.6225, 1.6225)
-texture = ExtResource("3_08wcf")
+position = Vector2(0, -41)
+texture = ExtResource("4_7d17j")
 centered = false
-flip_v = true
-region_enabled = true
 region_rect = Rect2(81, 0, 480, 400)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(337, 279)
-scale = Vector2(2, 2)
-script = ExtResource("5_pp7yv")
+[node name="stalagmite2" type="Sprite2D" parent="ParallaxBackground/slagmite"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 44)
+texture = ExtResource("4_7d17j")
+centered = false
+flip_v = true
+region_rect = Rect2(81, 0, 480, 400)
+
+[node name="boulder" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 1
+motion_scale = Vector2(2, 0)
+
+[node name="RigidBody2D" type="Area2D" parent="ParallaxBackground/boulder"]
+modulate = Color(0.62, 0.50003, 0.3534, 1)
+position = Vector2(-184, 234)
+scale = Vector2(0.359999, 0.359999)
+script = ExtResource("7_oyoud")
+rotation_speed = 3
+running_speed = 7
 metadata/_edit_group_ = true
 
-[node name="animated" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_5brnx")
-autoplay = "default"
-frame_progress = 0.647796
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/boulder/RigidBody2D"]
+texture = ExtResource("8_487lx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/boulder/RigidBody2D"]
+shape = SubResource("CircleShape2D_rh32a")
