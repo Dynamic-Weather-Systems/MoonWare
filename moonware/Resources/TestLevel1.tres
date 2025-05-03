@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelResouce" load_steps=2 format=3 uid="uid://dtaitvocgkqff"]
 
-[ext_resource type="Script" path="res://Resources/LevelResource.gd" id="1_3yp3l"]
+[ext_resource type="Script" path="res://Resources/LevelResource.gd" id="1_rljx8"]
 
 [resource]
-script = ExtResource("1_3yp3l")
-minigames = null
+script = ExtResource("1_rljx8")
+minigames = Array[PackedScene]([])

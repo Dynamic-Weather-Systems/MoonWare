@@ -1,4 +1,4 @@
 extends Node
 
 
-@export var microgames: Level_Resource
+@export var microgames: LevelResouce
