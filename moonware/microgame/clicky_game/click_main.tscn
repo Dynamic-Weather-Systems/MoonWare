@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwqj1v71ifikw"]
-
-[ext_resource type="Script" path="res://microgame/clicky_game/click_main.gd" id="1_mxx7r"]
-
-[node name="click_main" type="Node2D"]
-script = ExtResource("1_mxx7r")
