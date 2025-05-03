@@ -9,10 +9,6 @@
 [ext_resource type="Script" path="res://microgame/dr_jones_running/rigid_body_2d.gd" id="7_oyoud"]
 [ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="8_487lx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qdpmj"]
-radius = 9.0
-height = 118.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_86j4d"]
 atlas = ExtResource("5_srgow")
 region = Rect2(0, 128, 128, 129)
@@ -77,8 +73,12 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qdpmj"]
+radius = 7.0
+height = 110.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_rh32a"]
-radius = 489.174
+radius = 428.356
 
 [node name="running_main" type="Node2D"]
 script = ExtResource("1_ju8ao")
@@ -92,6 +92,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
 scroll_base_scale = Vector2(1, 0)
 
 [node name="cave_backround" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -127,22 +128,34 @@ z_index = 1
 position = Vector2(1, 0)
 motion_scale = Vector2(1, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="ParallaxBackground/player"]
+[node name="indiana" type="CharacterBody2D" parent="ParallaxBackground/player"]
 z_index = 1
 position = Vector2(436, 342)
 script = ExtResource("5_pp7yv")
 SPEED = 210.0
-metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/player/CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_qdpmj")
-
-[node name="Camera2D" type="Camera2D" parent="ParallaxBackground/player/CharacterBody2D"]
-
-[node name="animated" type="AnimatedSprite2D" parent="ParallaxBackground/player/CharacterBody2D"]
+[node name="animated" type="AnimatedSprite2D" parent="ParallaxBackground/player/indiana"]
 sprite_frames = SubResource("SpriteFrames_5brnx")
 autoplay = "default"
 frame_progress = 0.647796
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/player/indiana"]
+shape = SubResource("CapsuleShape2D_qdpmj")
+
+[node name="boulder" type="Area2D" parent="ParallaxBackground/player"]
+modulate = Color(0.62, 0.50003, 0.3534, 1)
+position = Vector2(-185, 234)
+scale = Vector2(0.359999, 0.359999)
+script = ExtResource("7_oyoud")
+rotation_speed = 3
+running_speed = 3
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/player/boulder"]
+texture = ExtResource("8_487lx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/player/boulder"]
+shape = SubResource("CircleShape2D_rh32a")
 
 [node name="slagmite" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = 2
@@ -166,21 +179,4 @@ centered = false
 flip_v = true
 region_rect = Rect2(81, 0, 480, 400)
 
-[node name="boulder" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = 1
-motion_scale = Vector2(2, 0)
-
-[node name="RigidBody2D" type="Area2D" parent="ParallaxBackground/boulder"]
-modulate = Color(0.62, 0.50003, 0.3534, 1)
-position = Vector2(-184, 234)
-scale = Vector2(0.359999, 0.359999)
-script = ExtResource("7_oyoud")
-rotation_speed = 3
-running_speed = 7
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/boulder/RigidBody2D"]
-texture = ExtResource("8_487lx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/boulder/RigidBody2D"]
-shape = SubResource("CircleShape2D_rh32a")
+[connection signal="body_entered" from="ParallaxBackground/player/boulder" to="." method="_on_boulder_body_entered"]

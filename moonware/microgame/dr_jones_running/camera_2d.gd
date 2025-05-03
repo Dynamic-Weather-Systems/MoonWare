@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Camera2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,8 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$'ParallaxBackground'.scroll_base_offset.x += -100*delta
-
-
-func _on_boulder_body_entered(body: Node2D) -> void:
-	print("collided")
+	global_position = $"../ParallaxBackground/player/indiana".global_position
