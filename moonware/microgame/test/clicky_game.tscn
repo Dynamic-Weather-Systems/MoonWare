@@ -6,7 +6,6 @@
 script = ExtResource("1_eqgol")
 game_name = "Clicky Game"
 game_description = "Click on the win button"
-game_length = 2
 message = "Click the right button"
 
 [node name="win" type="Button" parent="."]
