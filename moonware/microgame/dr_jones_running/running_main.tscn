@@ -98,7 +98,7 @@ scroll_base_scale = Vector2(1, 0)
 [node name="cave_backround" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.669315, 0.669315, 0.669315, 1)
 motion_scale = Vector2(1, 0)
-motion_mirroring = Vector2(2469, 0)
+motion_mirroring = Vector2(2468, 0)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -110,9 +110,9 @@ region_rect = Rect2(81, 0, 480, 400)
 
 [node name="cave_backround2" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.669315, 0.669315, 0.669315, 1)
-position = Vector2(1235, 0)
+position = Vector2(1234, 0)
 motion_scale = Vector2(1, 0)
-motion_mirroring = Vector2(2469, 0)
+motion_mirroring = Vector2(2468, 0)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -132,7 +132,7 @@ motion_scale = Vector2(1, 0)
 z_index = 1
 position = Vector2(436, 342)
 script = ExtResource("5_pp7yv")
-SPEED = 210.0
+SPEED = 100.0
 
 [node name="animated" type="AnimatedSprite2D" parent="ParallaxBackground/player/indiana"]
 sprite_frames = SubResource("SpriteFrames_5brnx")

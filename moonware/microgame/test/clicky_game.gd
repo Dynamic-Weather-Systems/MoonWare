@@ -4,7 +4,6 @@ extends Microgame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super() # calls ready func of Microgame.gd
-	countdown.wait_time = 4
 	countdown.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
