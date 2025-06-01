@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=17 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_p1kej"]
@@ -6,9 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cflsr37upnk6y" path="res://microgame/test/clicky_game.tscn" id="2_c60uo"]
 [ext_resource type="Texture2D" uid="uid://b8h1go2aktdv8" path="res://Assets/Art/television.png" id="2_glg3e"]
 [ext_resource type="Shader" path="res://Assets/Shaders/vhs_shader.gdshader" id="3_a3ver"]
-[ext_resource type="FontFile" uid="uid://bkyjfo6cxbj1v" path="res://Assets/Fonts/BLASTIMO SANS.ttf" id="3_r5jth"]
+[ext_resource type="PackedScene" uid="uid://dlt5rg7vye25q" path="res://scenes/main_menu_ui.tscn" id="7_xctaq"]
 [ext_resource type="FontFile" uid="uid://cbqqt0826iv0r" path="res://Assets/Fonts/Gameplay.ttf" id="8_a3d1u"]
-[ext_resource type="Texture2D" uid="uid://cuv5x0au2o41n" path="res://Assets/Art/landscape-photography-tutorials - Copy.jpg" id="8_qu7bs"]
 [ext_resource type="Script" path="res://scenes/Default_scripts/animation_player.gd" id="9_fjfyb"]
 [ext_resource type="AudioStream" uid="uid://bvj05oxdwgkjy" path="res://Assets/SFX/tv-static-noise-291374.mp3" id="11_orsa2"]
 [ext_resource type="AudioStream" uid="uid://dxwmy3meiev8q" path="res://Assets/SFX/arcade-ride-vens-adams-main-version-27955-01-45.mp3" id="12_lgb03"]
@@ -40,9 +39,6 @@ shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 1.0
-
-[sub_resource type="Theme" id="Theme_ujtui"]
-default_font = ExtResource("3_r5jth")
 
 [sub_resource type="Animation" id="Animation_dfqaa"]
 length = 0.001
@@ -153,75 +149,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MainMenuUI" type="Control" parent="TVTextureRect/MarginContainer/AllScreen/Screen"]
+[node name="MainMenuUI" parent="TVTextureRect/MarginContainer/AllScreen/Screen" instance=ExtResource("7_xctaq")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("8_qu7bs")
-expand_mode = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_bottom = 75
-
-[node name="IdiotBox" type="Label" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme = SubResource("Theme_ujtui")
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 200
-text = "The IDIOT Box"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 40
-
-[node name="PlayButton" type="Button" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 30
-text = "> PLAY"
-
-[node name="OptionsButton" type="Button" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "> OPTIONS"
-
-[node name="QuitButton" type="Button" parent="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 30
-text = "> QUIT"
 
 [node name="PressAnyButtonLabel" type="Label" parent="TVTextureRect/MarginContainer/AllScreen/Screen"]
 unique_name_in_owner = true
@@ -251,3 +181,5 @@ stream = ExtResource("11_orsa2")
 
 [node name="MainMenuTheme" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("12_lgb03")
+
+[connection signal="start_game" from="TVTextureRect/MarginContainer/AllScreen/Screen/MainMenuUI" to="." method="_on_main_menu_ui_start_game"]

@@ -24,6 +24,9 @@ extends Node
 # Check if game has started, used to start Title Sequence
 var gameStarted = false
 
+## How long to play static (seconds)
+@export var static_timer: float = 1.0
+
 
 # Startup function
 func _ready() -> void:
@@ -48,6 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 # Behaviour of the title sequence
 func titleSequence():
 	await set_power_mode('static')
+	set_power_mode("on")
 	
 	#TODO - Create a title sequence here
 	
@@ -58,17 +62,23 @@ func titleSequence():
 # Changes the Power mode of the TV Screen
 func set_power_mode(mode: String):
 	if mode == "off":
+		Screen.hide()
+		%BlankScreenRect.show()
+		StaticNoiseFX.stop()
 		set_VHS_param("static_noise_intensity", 0)
 		set_VHS_param("roll", false)
 		set_VHS_param("roll_size", 0)
-		Screen.hide()
 		return
 	if mode == "on":
-		Screen.show()                   
+		Screen.show()
+		%BlankScreenRect.show()
+		StaticNoiseFX.stop()
 		set_VHS_param("static_noise_intensity", 0.1)
 		set_VHS_param("roll", true)
 		set_VHS_param("roll_size", 15)
 		return
+		
+	# if static mode must be used, use await so the timer is allowed to fully finish 
 	if mode == "static":
 		set_VHS_param("static_noise_intensity", 1)
 		set_VHS_param("roll", true)
@@ -77,14 +87,18 @@ func set_power_mode(mode: String):
 			StaticNoiseFX.play()
 		Screen.hide()
 		%BlankScreenRect.hide()
-		await get_tree().create_timer(1).timeout
-		Screen.show()
-		%BlankScreenRect.show()
-		StaticNoiseFX.stop()
-		set_power_mode("on")
+		await get_tree().create_timer(static_timer).timeout
 
 
 # Easy syntax to change vhs shader parameters
 func set_VHS_param(param: String, value):
 	assert(VHSShaderRect)
 	VHSShaderRect.material.set_shader_parameter(param, value)
+
+
+# Starts the game
+func _on_main_menu_ui_start_game() -> void:
+	%MainMenuUI.queue_free()
+	MainMenuTheme.queue_free()
+	await set_power_mode('static')
+	set_power_mode('on')
