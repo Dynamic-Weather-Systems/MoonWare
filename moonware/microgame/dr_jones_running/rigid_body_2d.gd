@@ -5,12 +5,12 @@ extends Area2D
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-	#pass # Replace with function body.
+func _ready() -> void:
+	$animated.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Sprite2D.rotation_degrees +=rotation_speed # rotates the boulder
+	$animated.rotation_degrees +=rotation_speed # rotates the boulder
 	position.x += running_speed # moves the boulder
 	
