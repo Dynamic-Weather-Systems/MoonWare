@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var SPEED = 300.0 # speed of the player running
 var direction = 0 # direction of the player
 
+func _ready() -> void:
+	$animated.play("default")
+
 
 func _physics_process(delta: float) -> void:
 	direction = move_toward(direction, 0, 0.05) # moves direction toward 0 if no clicking
@@ -11,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	if direction: # if moving
 		$animated.play("default") # play running animation
 		velocity.x = direction * SPEED # add to the velocity of the player
-	else: # if not moving
+	elif $animated.animation == 'default': # if not moving and not explodings
 		$animated.pause() # stop running animation
 		velocity.x = move_toward(velocity.x, 0, SPEED) # stop moving
 	
