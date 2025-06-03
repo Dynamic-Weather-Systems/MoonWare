@@ -37,3 +37,4 @@ func _ready() -> void:
 	countdown.timeout.connect(_on_countdown_timeout)
 	countdown.one_shot = true
 	countdown.wait_time = game_length
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://b8ambg17ap7ae"]
+[gd_scene load_steps=133 format=3 uid="uid://b8ambg17ap7ae"]
 
 [ext_resource type="Texture2D" uid="uid://ce8fjwy701m08" path="res://Assets/MinigameBoundary.jpg" id="1_8oidl"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_main.gd" id="1_ju8ao"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://druelha1q6ddd" path="res://Assets/Art/explosion_w_debris_special_effect_transparent_png_by_joesalotofthings_ded8t2g-414w-2x.png" id="6_1jpie"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/rigid_body_2d.gd" id="7_oyoud"]
 [ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="8_487lx"]
+[ext_resource type="PackedScene" uid="uid://dbcliw2muu2x2" path="res://microgame/texture_progress_bar.tscn" id="10_vkq1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86j4d"]
 atlas = ExtResource("5_srgow")
@@ -873,7 +874,6 @@ radius = 428.356
 script = ExtResource("1_ju8ao")
 
 [node name="rect" type="Sprite2D" parent="."]
-visible = false
 z_index = 1000
 texture = ExtResource("1_8oidl")
 centered = false
@@ -965,6 +965,11 @@ texture = ExtResource("4_7d17j")
 centered = false
 flip_v = true
 region_rect = Rect2(81, 0, 480, 400)
+
+[node name="TextureProgressBar" parent="ParallaxBackground" instance=ExtResource("10_vkq1r")]
+z_index = 3
+offset_right = 190.0
+offset_bottom = 49.0
 
 [connection signal="animation_finished" from="ParallaxBackground/player/indiana/animated" to="." method="_on_jones_explosion_finished"]
 [connection signal="body_entered" from="ParallaxBackground/player/boulder" to="." method="_on_boulder_body_entered"]

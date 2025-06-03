@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbcliw2muu2x2"]
+
+[ext_resource type="Texture2D" uid="uid://d3pnq2jsd0048" path="res://Assets/Art/blue_button13.png" id="1_ey3h3"]
+[ext_resource type="Texture2D" uid="uid://7xq3cwp8il8w" path="res://Assets/Art/blue_button03.png" id="1_p6pta"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 50.0
+texture_under = ExtResource("1_ey3h3")
+texture_progress = ExtResource("1_p6pta")
