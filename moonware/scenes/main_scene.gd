@@ -35,6 +35,9 @@ func _ready() -> void:
 	%MainMenuUI.hide()
 	set_power_mode("off")
 	Screen.show()
+	
+	# Pick Random Seed
+	randomize()
 
 
 # Runs for any input event that hasn't been terminated
@@ -102,3 +105,10 @@ func _on_main_menu_ui_start_game() -> void:
 	MainMenuTheme.queue_free()
 	await set_power_mode('static')
 	set_power_mode('on')
+	
+	var minigameIdx = randi() % len(microgames.minigamePackedScenes)
+	print(minigameIdx)
+	var minigameInstance = microgames.minigamePackedScenes[minigameIdx].instantiate()
+	minigameInstance.scale = Vector2(2,2)
+	Screen.add_child(minigameInstance)
+	

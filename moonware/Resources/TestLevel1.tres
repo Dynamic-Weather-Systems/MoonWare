@@ -5,4 +5,4 @@
 
 [resource]
 script = ExtResource("1_rljx8")
-minigames = Array[PackedScene]([ExtResource("1_u71fj")])
+minigamePackedScenes = Array[PackedScene]([ExtResource("1_u71fj")])
