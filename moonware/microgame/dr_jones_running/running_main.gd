@@ -7,11 +7,13 @@ var has_lost = false # checks if the signals have been emited
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super() # calls the _ready function of microgame main
+	$ParallaxBackground/TextureProgressBar.max_value = game_length
 	countdown.start() # starts the timer
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$ParallaxBackground/TextureProgressBar.value = countdown.time_left
 	$'ParallaxBackground'.scroll_base_offset.x += -boulder_speed*delta # adds movement to the game without camera
 
 
