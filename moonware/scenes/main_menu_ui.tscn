@@ -41,36 +41,36 @@ mouse_filter = 2
 [node name="TitleMargin" type="MarginContainer" parent="MainVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_bottom = 75
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
 
 [node name="TheIdiotBox" type="Label" parent="MainVBoxContainer/TitleMargin"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = SubResource("Theme_ujtui")
 theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 200
+theme_override_font_sizes/font_size = 100
 text = "The IDIOT Box"
 horizontal_alignment = 1
 
 [node name="MainButtonVBoxContainer" type="VBoxContainer" parent="MainVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 15
 text = "> PLAY"
 
 [node name="OptionsButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 15
 text = "> OPTIONS"
 
 [node name="QuitButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
@@ -78,7 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 15
 text = "> QUIT"
 
 [node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
@@ -93,28 +93,28 @@ grow_vertical = 2
 [node name="OptionsMargin" type="MarginContainer" parent="OptionsVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_bottom = 75
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
 
 [node name="Options" type="Label" parent="OptionsVBoxContainer/OptionsMargin"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 50
 text = "Options"
 horizontal_alignment = 1
 
 [node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="BackButton" type="Button" parent="OptionsVBoxContainer/OptionsVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 15
 text = "> BACK"
 
 [connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

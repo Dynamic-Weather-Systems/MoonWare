@@ -23,6 +23,10 @@ extends Node
 
 # Check if game has started, used to start Title Sequence
 var gameStarted = false
+# instance of the currently loaded minigame
+var currentMinigame: Microgame = null
+# Boolean player minigame status
+var isPlaying: bool = false
 
 ## How long to play static (seconds)
 @export var static_timer: float = 1.0
@@ -105,10 +109,40 @@ func _on_main_menu_ui_start_game() -> void:
 	MainMenuTheme.queue_free()
 	await set_power_mode('static')
 	set_power_mode('on')
+	currentMinigame = start_new_minigame()
+
+
+func start_new_minigame():
+	assert(isPlaying==false)
+	
+	if currentMinigame:
+		currentMinigame.queue_free()
+		currentMinigame = null
+	
+	isPlaying = true
 	
 	var minigameIdx = randi() % len(microgames.minigamePackedScenes)
-	print(minigameIdx)
 	var minigameInstance = microgames.minigamePackedScenes[minigameIdx].instantiate()
-	minigameInstance.scale = Vector2(2,2)
+	minigameInstance.win_game.connect(minigame_won)
+	minigameInstance.lose_game.connect(minigame_lost)
 	Screen.add_child(minigameInstance)
+	return minigameInstance
+
+
+func minigame_won():
+	if not isPlaying:
+		return
 	
+	isPlaying = false
+	await set_power_mode('static')
+	set_power_mode('on')
+	currentMinigame = start_new_minigame()
+
+func minigame_lost():
+	if not isPlaying:
+		return
+	
+	isPlaying = false
+	await set_power_mode('static')
+	set_power_mode('on')
+	currentMinigame = start_new_minigame()
