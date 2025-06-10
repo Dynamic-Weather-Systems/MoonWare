@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlt5rg7vye25q"]
+
+[ext_resource type="Script" path="res://scenes/main_menu_ui.gd" id="1_i0xyg"]
+[ext_resource type="Texture2D" uid="uid://cuv5x0au2o41n" path="res://Assets/Art/landscape-photography-tutorials - Copy.jpg" id="1_ibi6e"]
+[ext_resource type="FontFile" uid="uid://bkyjfo6cxbj1v" path="res://Assets/Fonts/BLASTIMO SANS.ttf" id="2_2t3j0"]
+
+[sub_resource type="Theme" id="Theme_ujtui"]
+default_font = ExtResource("2_2t3j0")
+
+[node name="MainMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_i0xyg")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_ibi6e")
+expand_mode = 5
+
+[node name="MainVBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="MainVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
+
+[node name="TheIdiotBox" type="Label" parent="MainVBoxContainer/TitleMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_ujtui")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 100
+text = "The IDIOT Box"
+horizontal_alignment = 1
+
+[node name="MainButtonVBoxContainer" type="VBoxContainer" parent="MainVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> PLAY"
+
+[node name="OptionsButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> OPTIONS"
+
+[node name="QuitButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> QUIT"
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsMargin" type="MarginContainer" parent="OptionsVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
+
+[node name="Options" type="Label" parent="OptionsVBoxContainer/OptionsMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Options"
+horizontal_alignment = 1
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="Button" parent="OptionsVBoxContainer/OptionsVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> BACK"
+
+[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsVBoxContainer/OptionsVBoxContainer/BackButton" to="." method="_on_options_back_button_pressed"]

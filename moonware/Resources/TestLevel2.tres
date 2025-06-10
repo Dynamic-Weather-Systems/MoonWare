@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="LevelResouce" load_steps=2 format=3 uid="uid://dq15n52fjg3yr"]
-
-[ext_resource type="Script" path="res://Resources/LevelResource.gd" id="1_28k54"]
-
-[resource]
-script = ExtResource("1_28k54")
-minigames = null

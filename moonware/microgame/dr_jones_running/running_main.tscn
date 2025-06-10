@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://druelha1q6ddd" path="res://Assets/Art/explosion_w_debris_special_effect_transparent_png_by_joesalotofthings_ded8t2g-414w-2x.png" id="6_1jpie"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/rigid_body_2d.gd" id="7_oyoud"]
 [ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="8_487lx"]
-[ext_resource type="PackedScene" uid="uid://jugtsy0w1crs" path="res://microgame/texture_progress_bar.tscn" id="10_vkq1r"]
+[ext_resource type="PackedScene" path="res://microgame/texture_progress_bar.tscn" id="10_vkq1r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_er22w"]
 atlas = ExtResource("8_487lx")
