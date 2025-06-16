@@ -73,12 +73,13 @@ _data = {
 "RESET": SubResource("Animation_dfqaa")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "StaticNoiseFX", "MainMenuTheme")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticNoiseFX", "MainMenuTheme")]
 script = ExtResource("1_p1kej")
 microgames = ExtResource("2_a7ua1")
 VHSShaderRect = NodePath("TVControl/MarginContainer/AllScreen/VHSShaderRect")
 Screen = NodePath("TVControl/MarginContainer/AllScreen/Screen")
 HealthUI = NodePath("HealthUI")
+MainMenu = NodePath("TVControl/MarginContainer/AllScreen/Screen/MainMenuUI")
 StaticNoiseFX = NodePath("AudioPlayers/StaticNoise")
 MainMenuTheme = NodePath("AudioPlayers/MainMenuTheme")
 

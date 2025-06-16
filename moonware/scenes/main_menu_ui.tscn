@@ -83,6 +83,7 @@ text = "> QUIT"
 
 [node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +118,60 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 15
 text = "> BACK"
 
+[node name="GameOverVBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameOverMargin" type="MarginContainer" parent="GameOverVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
+
+[node name="GameOverLabel" type="Label" parent="GameOverVBoxContainer/GameOverMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="TextVBoxContainer" type="VBoxContainer" parent="GameOverVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="HighScore" type="Label" parent="GameOverVBoxContainer/TextVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "High Score: 0"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="GameOverVBoxContainer/TextVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "High Score: 0"
+horizontal_alignment = 1
+
+[node name="Replay" type="Button" parent="GameOverVBoxContainer/TextVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> REPLAY"
+
+[node name="Quit" type="Button" parent="GameOverVBoxContainer/TextVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> EXIT"
+
 [connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="OptionsVBoxContainer/OptionsVBoxContainer/BackButton" to="." method="_on_options_back_button_pressed"]
+[connection signal="pressed" from="GameOverVBoxContainer/TextVBoxContainer/Replay" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="GameOverVBoxContainer/TextVBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

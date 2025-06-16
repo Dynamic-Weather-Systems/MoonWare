@@ -13,6 +13,8 @@ extends Node
 @export var Screen: Control
 ## Health UI
 @export var HealthUI: Control
+## Main Menu UI
+@export var MainMenu: Control
 
 
 @export_subgroup("Audio Node References")
@@ -42,7 +44,7 @@ var score: int = 0
 func _ready() -> void:
 	# Display the "Press Anny Button" label on a blank screen.
 	%PressAnyButtonLabel.show()
-	%MainMenuUI.hide()
+	MainMenu.hide()
 	set_power_mode("off")
 	Screen.show()
 	
@@ -70,7 +72,7 @@ func titleSequence():
 	#TODO - Create a title sequence here
 	
 	#Main Menu
-	%MainMenuUI.show()
+	MainMenu.show()
 	MainMenuTheme.play()
 
 # Changes the Power mode of the TV Screen
@@ -111,8 +113,10 @@ func set_VHS_param(param: String, value):
 
 # Starts the game
 func _on_main_menu_ui_start_game() -> void:
-	%MainMenuUI.queue_free()
-	MainMenuTheme.queue_free()
+	score = 0
+	HealthUI.hearts = HealthUI.max_hearts
+	MainMenu.hide()
+	MainMenuTheme.stop()
 	set_power_mode('static')
 	await get_tree().create_timer(1).timeout
 	set_power_mode('on')
@@ -153,11 +157,16 @@ func minigame_lost():
 		return
 	
 	isPlaying = false
-	HealthUI.loseHearts(1)
+	HealthUI.hearts -= 1
 	
 	set_power_mode('static')
 	await get_tree().create_timer(1).timeout
 	set_power_mode('on')
 	if HealthUI.hearts > 0:
 		currentMinigame = start_new_minigame()
+	else:
+		currentMinigame.queue_free()
+		currentMinigame = null
+		MainMenu.show()
+		MainMenu.game_over(score, highScore)
 	
