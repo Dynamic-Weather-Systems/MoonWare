@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="LevelResouce" load_steps=3 format=3 uid="uid://dtaitvocgkqff"]
 
 [ext_resource type="Script" path="res://Resources/LevelResource.gd" id="1_rljx8"]
-[ext_resource type="PackedScene" uid="uid://cflsr37upnk6y" path="res://microgame/test/clicky_game.tscn" id="1_u71fj"]
+[ext_resource type="PackedScene" uid="uid://b8ambg17ap7ae" path="res://microgame/dr_jones_running/running_main.tscn" id="1_sijs6"]
 
 [resource]
 script = ExtResource("1_rljx8")
-minigamePackedScenes = Array[PackedScene]([ExtResource("1_u71fj")])
+minigamePackedScenes = Array[PackedScene]([ExtResource("1_sijs6")])
