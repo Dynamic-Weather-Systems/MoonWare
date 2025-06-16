@@ -41,3 +41,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void: # if input is called
 	if Input.is_action_just_pressed('left_mouse'): # if left mouse is just clicked
 		direction = Input.get_action_strength("left_mouse") # set direction to click strength
+
+
+func _on_animated_animation_changed() -> void:
+	$AudioStreamPlayer.play()

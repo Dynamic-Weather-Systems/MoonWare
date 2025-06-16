@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://druelha1q6ddd" path="res://Assets/Art/explosion_w_debris_special_effect_transparent_png_by_joesalotofthings_ded8t2g-414w-2x.png" id="6_1jpie"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/rigid_body_2d.gd" id="7_oyoud"]
 [ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="8_487lx"]
-[ext_resource type="PackedScene" path="res://microgame/texture_progress_bar.tscn" id="10_vkq1r"]
+[ext_resource type="AudioStream" uid="uid://dhfd4jnxdmx6b" path="res://Assets/SFX/259962__thehorriblejoke__8-bit-explosion.wav" id="8_dd6fx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_er22w"]
 atlas = ExtResource("8_487lx")
@@ -904,6 +904,9 @@ sprite_frames = SubResource("SpriteFrames_fffu0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boulder"]
 shape = SubResource("CircleShape2D_rh32a")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="boulder"]
+stream = ExtResource("8_dd6fx")
+
 [node name="indiana" type="CharacterBody2D" parent="."]
 position = Vector2(437, 342)
 script = ExtResource("5_pp7yv")
@@ -915,13 +918,8 @@ sprite_frames = SubResource("SpriteFrames_5brnx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="indiana"]
 shape = SubResource("CapsuleShape2D_qdpmj")
 
-[node name="TextureProgressBar" parent="indiana" instance=ExtResource("10_vkq1r")]
-z_index = 1
-offset_left = -437.0
-offset_top = -342.0
-offset_right = -247.0
-offset_bottom = -293.0
-metadata/_edit_use_anchors_ = true
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="indiana"]
+stream = ExtResource("8_dd6fx")
 
 [node name="stalagmite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -977,5 +975,7 @@ flip_v = true
 region_rect = Rect2(81, 0, 480, 400)
 
 [connection signal="body_entered" from="boulder" to="." method="_on_boulder_body_entered"]
-[connection signal="animation_finished" from="boulder/animated" to="." method="_on_rock_explosion_finished"]
-[connection signal="animation_finished" from="indiana/animated" to="." method="_on_jones_explosion_finished"]
+[connection signal="animation_changed" from="boulder/animated" to="boulder" method="_on_animated_animation_changed"]
+[connection signal="finished" from="boulder/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="animation_changed" from="indiana/animated" to="indiana" method="_on_animated_animation_changed"]
+[connection signal="finished" from="indiana/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
