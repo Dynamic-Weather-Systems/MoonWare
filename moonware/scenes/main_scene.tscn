@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=16 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_p1kej"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://0q6xrqv3t4l8" path="res://Assets/Fonts/blue_screen/Blue Screen Personal Use.ttf" id="6_53b12"]
 [ext_resource type="PackedScene" uid="uid://dlt5rg7vye25q" path="res://scenes/main_menu_ui.tscn" id="7_xctaq"]
 [ext_resource type="Script" path="res://scenes/Default_scripts/animation_player.gd" id="9_fjfyb"]
+[ext_resource type="PackedScene" uid="uid://gehatss5kps2" path="res://scenes/health_ui.tscn" id="11_kn0e1"]
 [ext_resource type="AudioStream" uid="uid://bvj05oxdwgkjy" path="res://Assets/SFX/tv-static-noise-291374.mp3" id="11_orsa2"]
 [ext_resource type="AudioStream" uid="uid://dxwmy3meiev8q" path="res://Assets/SFX/arcade-ride-vens-adams-main-version-27955-01-45.mp3" id="12_lgb03"]
 
@@ -72,11 +73,13 @@ _data = {
 "RESET": SubResource("Animation_dfqaa")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "StaticNoiseFX", "MainMenuTheme")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticNoiseFX", "MainMenuTheme")]
 script = ExtResource("1_p1kej")
 microgames = ExtResource("2_a7ua1")
 VHSShaderRect = NodePath("TVControl/MarginContainer/AllScreen/VHSShaderRect")
 Screen = NodePath("TVControl/MarginContainer/AllScreen/Screen")
+HealthUI = NodePath("HealthUI")
+MainMenu = NodePath("TVControl/MarginContainer/AllScreen/Screen/MainMenuUI")
 StaticNoiseFX = NodePath("AudioPlayers/StaticNoise")
 MainMenuTheme = NodePath("AudioPlayers/MainMenuTheme")
 
@@ -137,6 +140,7 @@ color = Color(0.129412, 0.27451, 0.14902, 1)
 
 [node name="Screen" type="Control" parent="TVControl/MarginContainer/AllScreen"]
 z_index = -1
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,5 +192,12 @@ stream = ExtResource("11_orsa2")
 
 [node name="MainMenuTheme" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("12_lgb03")
+
+[node name="HealthUI" parent="." instance=ExtResource("11_kn0e1")]
+offset_left = 59.0
+offset_top = 571.0
+offset_right = 59.0
+offset_bottom = 571.0
+scale = Vector2(3, 3)
 
 [connection signal="start_game" from="TVControl/MarginContainer/AllScreen/Screen/MainMenuUI" to="." method="_on_main_menu_ui_start_game"]

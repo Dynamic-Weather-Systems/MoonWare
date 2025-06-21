@@ -12,12 +12,20 @@ signal start_game()
 func _ready() -> void:
 	%MainVBoxContainer.show()
 	%OptionsVBoxContainer.hide()
+	%GameOverVBoxContainer.hide()
+
+
+func game_over(score: int, highScore: int) -> void:
+	%MainVBoxContainer.hide()
+	%OptionsVBoxContainer.hide()
+	
+	%HighScore.text = "High Score: " + str(highScore)
+	%Score.text = "Score: " + str(score)
+	%GameOverVBoxContainer.show()
 
 
 func _on_play_button_pressed() -> void:
-	print("pressed play")
 	start_game.emit()
-
 
 
 func _on_options_button_pressed() -> void:

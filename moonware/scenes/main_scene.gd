@@ -11,6 +11,10 @@ extends Node
 @export var VHSShaderRect: ColorRect
 ## Screen whose children will be displayed on the "TV" 
 @export var Screen: Control
+## Health UI
+@export var HealthUI: Control
+## Main Menu UI
+@export var MainMenu: Control
 
 
 @export_subgroup("Audio Node References")
@@ -27,6 +31,10 @@ var gameStarted = false
 var currentMinigame: Microgame = null
 # Boolean player minigame status
 var isPlaying: bool = false
+# Score
+var highScore: int = 0
+var score: int = 0
+
 
 ## How long to play static (seconds)
 @export var static_timer: float = 1.0
@@ -36,7 +44,7 @@ var isPlaying: bool = false
 func _ready() -> void:
 	# Display the "Press Anny Button" label on a blank screen.
 	%PressAnyButtonLabel.show()
-	%MainMenuUI.hide()
+	MainMenu.hide()
 	set_power_mode("off")
 	Screen.show()
 	
@@ -57,13 +65,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Behaviour of the title sequence
 func titleSequence():
-	await set_power_mode('static')
+	set_power_mode('static')
+	await get_tree().create_timer(1).timeout
 	set_power_mode("on")
 	
 	#TODO - Create a title sequence here
 	
 	#Main Menu
-	%MainMenuUI.show()
+	MainMenu.show()
 	MainMenuTheme.play()
 
 # Changes the Power mode of the TV Screen
@@ -94,7 +103,6 @@ func set_power_mode(mode: String):
 			StaticNoiseFX.play()
 		Screen.hide()
 		%BlankScreenRect.hide()
-		await get_tree().create_timer(static_timer).timeout
 
 
 # Easy syntax to change vhs shader parameters
@@ -105,9 +113,12 @@ func set_VHS_param(param: String, value):
 
 # Starts the game
 func _on_main_menu_ui_start_game() -> void:
-	%MainMenuUI.queue_free()
-	MainMenuTheme.queue_free()
-	await set_power_mode('static')
+	score = 0
+	HealthUI.hearts = HealthUI.max_hearts
+	MainMenu.hide()
+	MainMenuTheme.stop()
+	set_power_mode('static')
+	await get_tree().create_timer(1).timeout
 	set_power_mode('on')
 	currentMinigame = start_new_minigame()
 
@@ -133,8 +144,11 @@ func minigame_won():
 	if not isPlaying:
 		return
 	
+	set_power_mode('static')
 	isPlaying = false
-	await set_power_mode('static')
+	score += 1
+	highScore = max(score, highScore)
+	await get_tree().create_timer(1).timeout
 	set_power_mode('on')
 	currentMinigame = start_new_minigame()
 
@@ -143,6 +157,16 @@ func minigame_lost():
 		return
 	
 	isPlaying = false
-	await set_power_mode('static')
+	HealthUI.hearts -= 1
+	
+	set_power_mode('static')
+	await get_tree().create_timer(1).timeout
 	set_power_mode('on')
-	currentMinigame = start_new_minigame()
+	if HealthUI.hearts > 0:
+		currentMinigame = start_new_minigame()
+	else:
+		currentMinigame.queue_free()
+		currentMinigame = null
+		MainMenu.show()
+		MainMenu.game_over(score, highScore)
+	
