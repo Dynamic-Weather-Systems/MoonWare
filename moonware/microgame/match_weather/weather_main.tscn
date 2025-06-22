@@ -113,7 +113,7 @@ scale = Vector2(3.03158, 1)
 texture = ExtResource("4_cr7g0")
 centered = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Sunny" type="Label" parent="."]
 offset_left = 11.0
 offset_top = 212.0
 offset_right = 109.0
