@@ -13,4 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$animated.rotation_degrees +=rotation_speed # rotates the boulder
 	position.x += running_speed # moves the boulder
-	
+
+
+func _on_animated_animation_changed() -> void:
+	$AudioStreamPlayer.play()
