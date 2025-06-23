@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc6ol2brls0e6"]
+[gd_scene load_steps=6 format=3 uid="uid://dc6ol2brls0e6"]
 
 [ext_resource type="Script" path="res://microgame/match_weather/weather_main.gd" id="1_7saca"]
 [ext_resource type="Texture2D" uid="uid://cu0hnrlykxqbj" path="res://Assets/Art/weather_background.jpg" id="2_w7ry1"]
 [ext_resource type="Texture2D" uid="uid://7xq3cwp8il8w" path="res://Assets/Art/blue_button03.png" id="3_piypt"]
 [ext_resource type="Texture2D" uid="uid://d3pnq2jsd0048" path="res://Assets/Art/blue_button13.png" id="4_cr7g0"]
-[ext_resource type="PackedScene" uid="uid://dqt8uvi75xfh8" path="res://microgame/match_weather/weather_sprite.tscn" id="5_aldbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_annwg"]
-size = Vector2(60, 60)
 
 [node name="weather_main" type="Node2D"]
 script = ExtResource("1_7saca")
@@ -119,115 +117,85 @@ centered = false
 
 [node name="Sunny" type="Label" parent="."]
 offset_left = 10.0
-offset_top = 211.0
+offset_top = 240.0
 offset_right = 108.0
-offset_bottom = 319.0
+offset_bottom = 348.0
 text = "Sunny
 Hi	    Lo
 32   23"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+metadata/_edit_group_ = true
 
 [node name="Sunny_Area2D" type="Area2D" parent="Sunny"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sunny/Sunny_Area2D"]
-position = Vector2(51, -45)
 shape = SubResource("RectangleShape2D_annwg")
 
 [node name="Cloudy" type="Label" parent="."]
 offset_left = 117.0
-offset_top = 211.0
+offset_top = 240.0
 offset_right = 215.0
-offset_bottom = 319.0
+offset_bottom = 348.0
 text = "Sunny
 Hi	    Lo
 32   23"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+metadata/_edit_group_ = true
 
-[node name="Cloudy_Area2D" type="Area2D" parent="Cloudy"]
+[node name="Sunny_Area2D" type="Area2D" parent="Cloudy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cloudy/Cloudy_Area2D"]
-position = Vector2(51, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cloudy/Sunny_Area2D"]
 shape = SubResource("RectangleShape2D_annwg")
 
-[node name="Partly Cloudy" type="Label" parent="."]
+[node name="Partly_Cloudy" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 211.0
+offset_top = 240.0
 offset_right = 322.0
-offset_bottom = 319.0
+offset_bottom = 348.0
 text = "Sunny
 Hi	    Lo
 32   23"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+metadata/_edit_group_ = true
 
-[node name="Partly_Cloudy_Area2D" type="Area2D" parent="Partly Cloudy"]
+[node name="Sunny_Area2D" type="Area2D" parent="Partly_Cloudy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Partly Cloudy/Partly_Cloudy_Area2D"]
-position = Vector2(51, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Partly_Cloudy/Sunny_Area2D"]
 shape = SubResource("RectangleShape2D_annwg")
 
 [node name="Showers" type="Label" parent="."]
 offset_left = 322.0
-offset_top = 211.0
+offset_top = 240.0
 offset_right = 420.0
-offset_bottom = 319.0
+offset_bottom = 348.0
 text = "Sunny
 Hi	    Lo
 32   23"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+metadata/_edit_group_ = true
 
-[node name="Showers_Area2D" type="Area2D" parent="Showers"]
+[node name="Sunny_Area2D" type="Area2D" parent="Showers"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Showers/Showers_Area2D"]
-position = Vector2(51, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Showers/Sunny_Area2D"]
 shape = SubResource("RectangleShape2D_annwg")
 
 [node name="Stormy" type="Label" parent="."]
 offset_left = 427.0
-offset_top = 211.0
+offset_top = 240.0
 offset_right = 525.0
-offset_bottom = 319.0
+offset_bottom = 348.0
 text = "Sunny
 Hi	    Lo
 32   23"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
 metadata/_edit_group_ = true
 
-[node name="Stormy_Area2D" type="Area2D" parent="Stormy"]
+[node name="Sunny_Area2D" type="Area2D" parent="Stormy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stormy/Stormy_Area2D"]
-position = Vector2(51, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stormy/Sunny_Area2D"]
 shape = SubResource("RectangleShape2D_annwg")
-
-[node name="sunny_sprite" parent="." instance=ExtResource("5_aldbu")]
-position = Vector2(63, 360)
-scale = Vector2(0.7, 0.7)
-
-[node name="cloudy_sprite" parent="." instance=ExtResource("5_aldbu")]
-position = Vector2(482, 363)
-scale = Vector2(0.7, 0.7)
-region_rect = Rect2(23.673, 373.711, 100, 58.988)
-
-[node name="partly_cloudy_sprite" parent="." instance=ExtResource("5_aldbu")]
-position = Vector2(383, 366)
-scale = Vector2(0.7, 0.7)
-region_rect = Rect2(324.446, 39.217, 100, 70.8248)
-
-[node name="showers_sprite" parent="." instance=ExtResource("5_aldbu")]
-position = Vector2(282, 366)
-scale = Vector2(0.7, 0.7)
-region_rect = Rect2(176.954, 194.907, 96.1995, 88.263)
-
-[node name="stormy_sprite" parent="." instance=ExtResource("5_aldbu")]
-position = Vector2(172, 366)
-scale = Vector2(0.7, 0.7)
-region_rect = Rect2(474.916, 191.797, 100, 93.381)
