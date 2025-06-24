@@ -17,15 +17,14 @@ game_length = 20
 message = "click+drag"
 
 [node name="background_setup" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
 
 [node name="background" type="Sprite2D" parent="background_setup"]
+z_index = -1
 texture = ExtResource("2_w7ry1")
 centered = false
 
 [node name="Mon_box" type="Sprite2D" parent="background_setup"]
-self_modulate = Color(0, 0.278431, 1, 1)
+self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(61, 201)
 rotation = 1.5708
 scale = Vector2(1.5, 2)
@@ -42,7 +41,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Tue_box" type="Sprite2D" parent="background_setup"]
-self_modulate = Color(0, 0.278431, 1, 1)
+self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(166, 201)
 rotation = 1.5708
 scale = Vector2(1.5, 2)
@@ -59,7 +58,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Wed_box" type="Sprite2D" parent="background_setup"]
-self_modulate = Color(0, 0.278431, 1, 1)
+self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(270, 201)
 rotation = 1.5708
 scale = Vector2(1.5, 2)
@@ -76,7 +75,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Thu_box" type="Sprite2D" parent="background_setup"]
-self_modulate = Color(0, 0.278431, 1, 1)
+self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(370, 201)
 rotation = 1.5708
 scale = Vector2(1.5, 2)
@@ -93,7 +92,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Fri_box" type="Sprite2D" parent="background_setup"]
-self_modulate = Color(0, 0.278431, 1, 1)
+self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(477, 201)
 rotation = 1.5708
 scale = Vector2(1.5, 2)
@@ -116,6 +115,74 @@ position = Vector2(-18, 353)
 scale = Vector2(3.03158, 1)
 texture = ExtResource("4_cr7g0")
 centered = false
+
+[node name="top_text" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(1, 1, 0.737255, 1)
+z_index = -1
+position = Vector2(-3, 5)
+scale = Vector2(1.05844, 0.234568)
+texture = ExtResource("2_w7ry1")
+centered = false
+flip_v = true
+region_enabled = true
+region_rect = Rect2(48, 122, 462, 243)
+
+[node name="New_Olympus" type="Label" parent="background_setup"]
+z_index = -1
+offset_left = 131.0
+offset_top = -2.0
+offset_right = 333.0
+offset_bottom = 40.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 30
+text = "New Fork City
+"
+
+[node name="extended forecast" type="Label" parent="background_setup"]
+self_modulate = Color(1, 1, 0, 1)
+z_index = -1
+offset_left = 147.0
+offset_top = 34.0
+offset_right = 308.0
+offset_bottom = 76.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 18
+text = "Extended Forecast
+"
+
+[node name="date" type="Label" parent="background_setup"]
+z_index = -1
+offset_left = 381.0
+offset_top = 12.0
+offset_right = 467.0
+offset_bottom = 61.0
+theme_override_constants/line_spacing = -7
+text = "Sunday
+October 24"
+horizontal_alignment = 2
+
+[node name="logo" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 1, 0.733333, 1)
+z_index = -1
+position = Vector2(54, 29.5)
+scale = Vector2(0.431579, 1.22222)
+texture = ExtResource("3_piypt")
+metadata/_edit_group_ = true
+
+[node name="logo text" type="Label" parent="background_setup"]
+z_index = -1
+offset_left = 16.0
+offset_top = 3.0
+offset_right = 92.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -6
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "The
+CHANNEL
+WEATHER"
+vertical_alignment = 1
 
 [node name="Sunny" type="Label" parent="."]
 offset_left = 10.0
