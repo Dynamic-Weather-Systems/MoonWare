@@ -3,14 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://bk3pf8jb5mtip" path="res://Assets/Art/Weather_Icons.png" id="1_7hm4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erxwl"]
-size = Vector2(40, 36)
+size = Vector2(60, 99)
 
-[node name="weather_sprite" type="Sprite2D"]
+[node name="weather_sprite" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_erxwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7hm4c")
 region_enabled = true
-region_rect = Rect2(24.487, 24.541, 100, 100)
+region_rect = Rect2(25, 25, 100, 100)
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_erxwl")
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
