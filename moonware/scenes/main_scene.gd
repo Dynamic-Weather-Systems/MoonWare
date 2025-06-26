@@ -26,7 +26,7 @@ extends Node
 
 
 # Check if game has started, used to start Title Sequence
-var gameStarted = false
+var gameStarted: bool = false
 # instance of the currently loaded minigame
 var currentMinigame: Microgame = null
 # Boolean player minigame status
@@ -34,6 +34,11 @@ var isPlaying: bool = false
 # Score
 var highScore: int = 0
 var score: int = 0
+# watch time
+var startTime: int = 0
+var endTime: int = 0
+# Channel count
+var channelCount: int = 0
 
 
 ## How long to play static (seconds)
@@ -113,6 +118,9 @@ func set_VHS_param(param: String, value):
 
 # Starts the game
 func _on_main_menu_ui_start_game() -> void:
+	startTime = Time.get_ticks_msec()
+	endTime = 0
+	channelCount = 0
 	score = 0
 	HealthUI.hearts = HealthUI.max_hearts
 	MainMenu.hide()
@@ -125,6 +133,8 @@ func _on_main_menu_ui_start_game() -> void:
 
 func start_new_minigame():
 	assert(isPlaying==false)
+	
+	channelCount += 1
 	
 	if currentMinigame:
 		currentMinigame.queue_free()
@@ -168,5 +178,7 @@ func minigame_lost():
 		currentMinigame.queue_free()
 		currentMinigame = null
 		MainMenu.show()
-		MainMenu.game_over(score, highScore)
+		endTime = Time.get_ticks_msec()
+		var watchTime = endTime - startTime
+		MainMenu.game_over(score, highScore, watchTime, channelCount)
 	

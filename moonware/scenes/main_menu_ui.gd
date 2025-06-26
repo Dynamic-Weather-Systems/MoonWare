@@ -18,11 +18,30 @@ func _ready() -> void:
 func game_over(score: int, highScore: int, time_ms: int, channels: int) -> void:
 	%MainMenuPage.hide()
 	%OptionsPage.hide()
+	var rem = time_ms
+	var hours = floor(rem/3600000)
+	if (hours/10 < 1):
+		hours = "0" + str(hours)
+	else:
+		hours = str(hours)
 	
+	rem = rem % 3600000
+	var mins = rem/60000
+	if (mins/10 < 1):
+		mins = "0" + str(mins)
+	else:
+		mins = str(mins)
+	
+	rem = rem%60000
+	var secs = rem/1000
+	if (secs/10 < 1):
+		secs = "0" + str(secs)
+	else:
+		secs = str(secs)
 	%HighScore.text = "High Score: " + str(highScore)
 	%Score.text = "Score: " + str(score)
 	%ChannelCountLabel.text = "Channels: " + str(channels)
-	
+	%TimeLabel.text = hours + " : " + mins  + " : " + secs
 	%GameOverPage.show()
 
 
