@@ -28,60 +28,7 @@ mouse_filter = 2
 texture = ExtResource("1_ibi6e")
 expand_mode = 5
 
-[node name="MainVBoxContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TitleMargin" type="MarginContainer" parent="MainVBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 38
-theme_override_constants/margin_bottom = 38
-
-[node name="TheIdiotBox" type="Label" parent="MainVBoxContainer/TitleMargin"]
-layout_mode = 2
-size_flags_vertical = 1
-theme = SubResource("Theme_ujtui")
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 100
-text = "The IDIOT Box"
-horizontal_alignment = 1
-
-[node name="MainButtonVBoxContainer" type="VBoxContainer" parent="MainVBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 20
-
-[node name="PlayButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_font_sizes/font_size = 15
-text = "> PLAY"
-
-[node name="OptionsButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_mode = 0
-theme_override_font_sizes/font_size = 15
-text = "> OPTIONS"
-
-[node name="QuitButton" type="Button" parent="MainVBoxContainer/MainButtonVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_font_sizes/font_size = 15
-text = "> QUIT"
-
-[node name="OptionsVBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainMenuPage" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -91,35 +38,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsMargin" type="MarginContainer" parent="OptionsVBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 38
-theme_override_constants/margin_bottom = 38
-
-[node name="Options" type="Label" parent="OptionsVBoxContainer/OptionsMargin"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 50
-text = "Options"
-horizontal_alignment = 1
-
-[node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsVBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 20
-
-[node name="BackButton" type="Button" parent="OptionsVBoxContainer/OptionsVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_font_sizes/font_size = 15
-text = "> BACK"
-
-[node name="GameOverVBoxContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
+[node name="MainVBoxContainer" type="VBoxContainer" parent="MainMenuPage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,50 +47,181 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GameOverMargin" type="MarginContainer" parent="GameOverVBoxContainer"]
+[node name="TitleMargin" type="MarginContainer" parent="MainMenuPage/MainVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 38
 theme_override_constants/margin_bottom = 38
 
-[node name="GameOverLabel" type="Label" parent="GameOverVBoxContainer/GameOverMargin"]
+[node name="TheIdiotBox" type="Label" parent="MainMenuPage/MainVBoxContainer/TitleMargin"]
 layout_mode = 2
 size_flags_vertical = 1
+theme = SubResource("Theme_ujtui")
 theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 50
-text = "Game Over"
+theme_override_font_sizes/font_size = 100
+text = "The IDIOT Box"
 horizontal_alignment = 1
 
-[node name="TextVBoxContainer" type="VBoxContainer" parent="GameOverVBoxContainer"]
+[node name="MainButtonVBoxContainer" type="VBoxContainer" parent="MainMenuPage/MainVBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
-[node name="HighScore" type="Label" parent="GameOverVBoxContainer/TextVBoxContainer"]
+[node name="PlayButton" type="Button" parent="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> PLAY"
+
+[node name="OptionsButton" type="Button" parent="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> OPTIONS"
+
+[node name="QuitButton" type="Button" parent="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> QUIT"
+
+[node name="OptionsPage" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsMargin" type="MarginContainer" parent="OptionsPage/OptionsVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_bottom = 38
+
+[node name="Options" type="Label" parent="OptionsPage/OptionsVBoxContainer/OptionsMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "Options"
+horizontal_alignment = 1
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsPage/OptionsVBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="Button" parent="OptionsPage/OptionsVBoxContainer/OptionsVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "> BACK"
+
+[node name="GameOverPage" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlueColorRect" type="ColorRect" parent="GameOverPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPage/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameOverPage/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="HighScore" type="Label" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "High Score: 0"
 horizontal_alignment = 1
 
-[node name="Score" type="Label" parent="GameOverVBoxContainer/TextVBoxContainer"]
+[node name="Score" type="Label" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "High Score: 0"
 horizontal_alignment = 1
 
-[node name="Replay" type="Button" parent="GameOverVBoxContainer/TextVBoxContainer"]
+[node name="ChannelCountLabel" type="Label" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Channels: 6
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverPage/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 210
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="ReturnButton" type="Button" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "> REPLAY"
+theme_override_font_sizes/font_size = 25
+text = "RETURN"
 
-[node name="Quit" type="Button" parent="GameOverVBoxContainer/TextVBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "> EXIT"
+theme_override_constants/margin_top = 20
 
-[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/MainButtonVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="OptionsVBoxContainer/OptionsVBoxContainer/BackButton" to="." method="_on_options_back_button_pressed"]
-[connection signal="pressed" from="GameOverVBoxContainer/TextVBoxContainer/Replay" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="GameOverVBoxContainer/TextVBoxContainer/Quit" to="." method="_on_quit_button_pressed"]
+[node name="TimeLabel" type="Label" parent="GameOverPage/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 : 34 : 20
+"
+
+[connection signal="pressed" from="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuPage/MainVBoxContainer/MainButtonVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsPage/OptionsVBoxContainer/OptionsVBoxContainer/BackButton" to="." method="_on_options_back_button_pressed"]
+[connection signal="pressed" from="GameOverPage/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ReturnButton" to="." method="_on_options_back_button_pressed"]

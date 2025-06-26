@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=18 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_p1kej"]
@@ -7,6 +7,8 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/vhs_shader.gdshader" id="3_a3ver"]
 [ext_resource type="FontFile" uid="uid://0q6xrqv3t4l8" path="res://Assets/Fonts/blue_screen/Blue Screen Personal Use.ttf" id="6_53b12"]
 [ext_resource type="PackedScene" uid="uid://dlt5rg7vye25q" path="res://scenes/main_menu_ui.tscn" id="7_xctaq"]
+[ext_resource type="Texture2D" uid="uid://dtf2y0nbffmbo" path="res://Assets/Art/Untitled(1).jpg" id="8_4ujhg"]
+[ext_resource type="Texture2D" uid="uid://bp0cn67rdlwlf" path="res://Assets/Art/Screenshot 2025-06-24 200205.png" id="9_34xxg"]
 [ext_resource type="Script" path="res://scenes/Default_scripts/animation_player.gd" id="9_fjfyb"]
 [ext_resource type="PackedScene" uid="uid://gehatss5kps2" path="res://scenes/health_ui.tscn" id="11_kn0e1"]
 [ext_resource type="AudioStream" uid="uid://bvj05oxdwgkjy" path="res://Assets/SFX/tv-static-noise-291374.mp3" id="11_orsa2"]
@@ -151,8 +153,14 @@ mouse_filter = 2
 
 [node name="MainMenuUI" parent="TVControl/MarginContainer/AllScreen/Screen" instance=ExtResource("7_xctaq")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
+
+[node name="Screenshot2025-06-24200206" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+position = Vector2(262.687, 191)
+scale = Vector2(0.477952, 0.477952)
+texture = ExtResource("9_34xxg")
 
 [node name="PressAnyButtonLabel" type="Label" parent="TVControl/MarginContainer/AllScreen/Screen"]
 unique_name_in_owner = true
@@ -176,6 +184,17 @@ libraries = {
 }
 script = ExtResource("9_fjfyb")
 
+[node name="Untitled(1)" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
+visible = false
+texture = ExtResource("8_4ujhg")
+centered = false
+
+[node name="Screenshot2025-06-24200205" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
+visible = false
+scale = Vector2(0.55192, 0.55192)
+texture = ExtResource("9_34xxg")
+centered = false
+
 [node name="TVTextureRect" type="TextureRect" parent="."]
 z_index = 2
 offset_left = 108.0
@@ -184,6 +203,7 @@ offset_bottom = 1292.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("2_glg3e")
+metadata/_edit_lock_ = true
 
 [node name="AudioPlayers" type="Node" parent="."]
 
