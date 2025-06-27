@@ -247,7 +247,6 @@ metadata/_edit_lock_ = true
 [node name="Area2D" type="Area2D" parent="texts/Sunny"]
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="texts/Sunny/Area2D"]
 position = Vector2(51, -45)
@@ -271,7 +270,6 @@ metadata/_edit_lock_ = true
 [node name="Area2D" type="Area2D" parent="texts/Cloudy"]
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="texts/Cloudy/Area2D"]
 position = Vector2(51, -45)
@@ -295,7 +293,6 @@ metadata/_edit_lock_ = true
 [node name="Area2D" type="Area2D" parent="texts/Partly Cloudy"]
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="texts/Partly Cloudy/Area2D"]
 position = Vector2(51, -45)
@@ -319,7 +316,6 @@ metadata/_edit_lock_ = true
 [node name="Area2D" type="Area2D" parent="texts/Showers"]
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="texts/Showers/Area2D"]
 position = Vector2(51, -45)
@@ -343,7 +339,6 @@ metadata/_edit_lock_ = true
 [node name="Area2D" type="Area2D" parent="texts/Stormy"]
 collision_mask = 2
 input_pickable = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="texts/Stormy/Area2D"]
 position = Vector2(51, -45)
@@ -355,16 +350,12 @@ shape = SubResource("RectangleShape2D_annwg")
 position = Vector2(167, 370)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 0
-monitoring = false
 metadata/_edit_group_ = true
 
 [node name="cloudy_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(66, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 0
-monitoring = false
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="sprites/cloudy_sprite" index="1"]
@@ -374,8 +365,6 @@ region_rect = Rect2(475, 40, 100, 70)
 position = Vector2(268, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 0
-monitoring = false
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="sprites/partly_cloudy_sprite" index="1"]
@@ -385,8 +374,6 @@ region_rect = Rect2(325, 40, 100, 70)
 position = Vector2(375, 367)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 0
-monitoring = false
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="sprites/showers_sprite" index="1"]
@@ -396,8 +383,6 @@ region_rect = Rect2(175, 359, 100, 88)
 position = Vector2(478, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
-collision_mask = 0
-monitoring = false
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="sprites/stormy_sprite" index="1"]

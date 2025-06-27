@@ -29,4 +29,4 @@ func _input(event: InputEvent) -> void:
 			is_holding = true
 	if Input.is_action_just_released("left_mouse") and is_holding:
 		is_holding = false
-		
+		held_body.drop()
