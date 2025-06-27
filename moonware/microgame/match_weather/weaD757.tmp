@@ -1,0 +1,201 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc6ol2brls0e6"]
+
+[ext_resource type="Script" path="res://microgame/match_weather/weather_main.gd" id="1_7saca"]
+[ext_resource type="Texture2D" uid="uid://cu0hnrlykxqbj" path="res://Assets/Art/weather_background.jpg" id="2_w7ry1"]
+[ext_resource type="Texture2D" uid="uid://7xq3cwp8il8w" path="res://Assets/Art/blue_button03.png" id="3_piypt"]
+[ext_resource type="Texture2D" uid="uid://d3pnq2jsd0048" path="res://Assets/Art/blue_button13.png" id="4_cr7g0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_annwg"]
+
+[node name="weather_main" type="Node2D"]
+script = ExtResource("1_7saca")
+game_name = "Match the weather"
+game_description = "match the weather icon to the description"
+game_length = 20
+message = "click+drag"
+
+[node name="background_setup" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="background" type="Sprite2D" parent="background_setup"]
+texture = ExtResource("2_w7ry1")
+centered = false
+
+[node name="Mon_box" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 0.278431, 1, 1)
+position = Vector2(61, 201)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+texture = ExtResource("3_piypt")
+
+[node name="Label" type="Label" parent="background_setup/Mon_box"]
+offset_left = -85.3333
+offset_top = 19.5
+offset_right = -45.3333
+offset_bottom = 42.5
+rotation = -1.5708
+text = "MON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tue_box" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 0.278431, 1, 1)
+position = Vector2(166, 201)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+texture = ExtResource("3_piypt")
+
+[node name="Label" type="Label" parent="background_setup/Tue_box"]
+offset_left = -85.3333
+offset_top = 19.5
+offset_right = -45.3333
+offset_bottom = 42.5
+rotation = -1.5708
+text = "TUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wed_box" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 0.278431, 1, 1)
+position = Vector2(270, 201)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+texture = ExtResource("3_piypt")
+
+[node name="Label" type="Label" parent="background_setup/Wed_box"]
+offset_left = -85.3333
+offset_top = 19.5
+offset_right = -45.3333
+offset_bottom = 42.5
+rotation = -1.5708
+text = "WED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Thu_box" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 0.278431, 1, 1)
+position = Vector2(370, 201)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+texture = ExtResource("3_piypt")
+
+[node name="Label" type="Label" parent="background_setup/Thu_box"]
+offset_left = -85.3333
+offset_top = 19.5
+offset_right = -45.3333
+offset_bottom = 42.5
+rotation = -1.5708
+text = "THU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fri_box" type="Sprite2D" parent="background_setup"]
+self_modulate = Color(0, 0.278431, 1, 1)
+position = Vector2(477, 201)
+rotation = 1.5708
+scale = Vector2(1.5, 2)
+texture = ExtResource("3_piypt")
+
+[node name="Label" type="Label" parent="background_setup/Fri_box"]
+offset_left = -85.3333
+offset_top = 19.5
+offset_right = -45.3333
+offset_bottom = 42.5
+rotation = -1.5708
+text = "FRI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bottom_box" type="Sprite2D" parent="background_setup"]
+modulate = Color(0.424931, 0.424931, 0.424931, 1)
+self_modulate = Color(0, 0.0862745, 0.552941, 1)
+position = Vector2(-18, 353)
+scale = Vector2(3.03158, 1)
+texture = ExtResource("4_cr7g0")
+centered = false
+
+[node name="Sunny" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 240.0
+offset_right = 108.0
+offset_bottom = 348.0
+text = "Sunny
+Hi	    Lo
+32   23"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Sunny_Area2D" type="Area2D" parent="Sunny"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sunny/Sunny_Area2D"]
+shape = SubResource("RectangleShape2D_annwg")
+
+[node name="Cloudy" type="Label" parent="."]
+offset_left = 117.0
+offset_top = 240.0
+offset_right = 215.0
+offset_bottom = 348.0
+text = "Sunny
+Hi	    Lo
+32   23"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Sunny_Area2D" type="Area2D" parent="Cloudy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cloudy/Sunny_Area2D"]
+shape = SubResource("RectangleShape2D_annwg")
+
+[node name="Partly_Cloudy" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 240.0
+offset_right = 322.0
+offset_bottom = 348.0
+text = "Sunny
+Hi	    Lo
+32   23"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Sunny_Area2D" type="Area2D" parent="Partly_Cloudy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Partly_Cloudy/Sunny_Area2D"]
+shape = SubResource("RectangleShape2D_annwg")
+
+[node name="Showers" type="Label" parent="."]
+offset_left = 322.0
+offset_top = 240.0
+offset_right = 420.0
+offset_bottom = 348.0
+text = "Sunny
+Hi	    Lo
+32   23"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Sunny_Area2D" type="Area2D" parent="Showers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Showers/Sunny_Area2D"]
+shape = SubResource("RectangleShape2D_annwg")
+
+[node name="Stormy" type="Label" parent="."]
+offset_left = 427.0
+offset_top = 240.0
+offset_right = 525.0
+offset_bottom = 348.0
+text = "Sunny
+Hi	    Lo
+32   23"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Sunny_Area2D" type="Area2D" parent="Stormy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stormy/Sunny_Area2D"]
+shape = SubResource("RectangleShape2D_annwg")
