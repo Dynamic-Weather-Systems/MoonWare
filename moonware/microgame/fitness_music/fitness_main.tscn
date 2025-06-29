@@ -1,0 +1,407 @@
+[gd_scene load_steps=17 format=3 uid="uid://rqyn43lvt264"]
+
+[ext_resource type="Script" path="res://microgame/fitness_music/fitness_main.gd" id="1_i6qck"]
+[ext_resource type="Texture2D" uid="uid://dks7kiyy08lnn" path="res://Assets/Art/neon_background.png" id="1_m7v1c"]
+[ext_resource type="Texture2D" uid="uid://cndaa4l86mvyq" path="res://Assets/Art/fitness_sprite2.png" id="1_yaofl"]
+[ext_resource type="Script" path="res://microgame/fitness_music/sprites.gd" id="3_13y8g"]
+[ext_resource type="Texture2D" uid="uid://1otffgaqouwn" path="res://Assets/Art/pngkey.com-rock-texture-png-1854792.png" id="6_0kfnh"]
+[ext_resource type="AudioStream" uid="uid://dmm03b33030xp" path="res://Assets/SFX/615547__josefpres__bass-loops-034-with-drums-long-loop-120-bpm.wav" id="6_b7ywk"]
+[ext_resource type="Script" path="res://microgame/fitness_music/music_notes.gd" id="6_c53ty"]
+[ext_resource type="Texture2D" uid="uid://d3pnq2jsd0048" path="res://Assets/Art/blue_button13.png" id="8_05qy6"]
+
+[sub_resource type="Animation" id="Animation_bq4oj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dancers:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dancers2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dancers3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_scup0"]
+resource_name = "bopping"
+length = 0.5
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dancers:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dancers2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.6, 0.54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dancers3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.6, 0.54)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgwl4"]
+_data = {
+"RESET": SubResource("Animation_bq4oj"),
+"bopping": SubResource("Animation_scup0")
+}
+
+[sub_resource type="Animation" id="Animation_glj4x"]
+resource_name = "beat order"
+length = 5.00002
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicBeats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.5, 3.75, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, 55), Vector2(570, 55), Vector2(505, 55), Vector2(68, 55), Vector2(-35, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicBeats2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.75, 2.25, 2.5, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(642, 55), Vector2(567, 55), Vector2(505, 55), Vector2(67, 55), Vector2(-39, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MusicBeats3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.75, 3.25, 3.5, 3.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(700, 55), Vector2(566, 55), Vector2(505, 55), Vector2(68, 55), Vector2(-35, 55)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MusicBeats4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.75, 4.25, 4.5, 4.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(878, 55), Vector2(569, 55), Vector2(507, 55), Vector2(70, 55), Vector2(-35, 55)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MusicBeats5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.25, 3.75, 4, 4.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(820, 55), Vector2(572, 55), Vector2(504, 55), Vector2(68, 55), Vector2(-38, 55)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MusicBeats6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(580, 55), Vector2(571, 55), Vector2(505, 55), Vector2(69, 55), Vector2(-36, 55)]
+}
+
+[sub_resource type="Animation" id="Animation_8naio"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicBeats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(760, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicBeats2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(642, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MusicBeats3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(700, 55)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MusicBeats4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(878, 55)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MusicBeats5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(820, 55)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MusicBeats6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(580, 55)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7br5p"]
+_data = {
+"RESET": SubResource("Animation_8naio"),
+"beat order": SubResource("Animation_glj4x")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgemn"]
+size = Vector2(60, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djxe8"]
+radius = 26.0
+
+[node name="FitnessMain" type="Node2D"]
+script = ExtResource("1_i6qck")
+game_name = "Aerobic Fitness"
+game_description = "Click on the Beat to Excercise"
+win_message = "Win"
+lose_message = "Lose"
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_m7v1c")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="sprites" type="Node2D" parent="."]
+script = ExtResource("3_13y8g")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="dancers" type="Sprite2D" parent="sprites"]
+unique_name_in_owner = true
+position = Vector2(274, 345)
+texture = ExtResource("1_yaofl")
+offset = Vector2(0, -144)
+
+[node name="dancers2" type="Sprite2D" parent="sprites"]
+unique_name_in_owner = true
+self_modulate = Color(0.686275, 1, 0.835294, 1)
+position = Vector2(148, 288)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_yaofl")
+offset = Vector2(0, -141.667)
+
+[node name="dancers3" type="Sprite2D" parent="sprites"]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.862745, 0.635294, 1)
+position = Vector2(401, 288)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_yaofl")
+offset = Vector2(0, -143.333)
+
+[node name="Dance" type="AnimationPlayer" parent="sprites"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hgwl4")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="sprites"]
+unique_name_in_owner = true
+stream = ExtResource("6_b7ywk")
+autoplay = true
+
+[node name="MusicNotes" type="Node2D" parent="."]
+script = ExtResource("6_c53ty")
+
+[node name="beats" type="AnimationPlayer" parent="MusicNotes"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_7br5p")
+}
+
+[node name="OnBeatChecker" type="Area2D" parent="MusicNotes"]
+position = Vector2(68, 57)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/OnBeatChecker"]
+self_modulate = Color(0, 0, 0, 0.482353)
+scale = Vector2(0.315789, 1.22449)
+texture = ExtResource("8_05qy6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/OnBeatChecker"]
+visible = false
+shape = SubResource("RectangleShape2D_xgemn")
+
+[node name="MusicBeats" type="Area2D" parent="MusicNotes"]
+position = Vector2(760, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[node name="MusicBeats2" type="Area2D" parent="MusicNotes"]
+position = Vector2(642, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats2"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats2"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[node name="MusicBeats3" type="Area2D" parent="MusicNotes"]
+position = Vector2(700, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats3"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats3"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[node name="MusicBeats4" type="Area2D" parent="MusicNotes"]
+position = Vector2(878, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats4"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats4"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[node name="MusicBeats5" type="Area2D" parent="MusicNotes"]
+position = Vector2(820, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats5"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats5"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[node name="MusicBeats6" type="Area2D" parent="MusicNotes"]
+position = Vector2(580, 55)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/MusicBeats6"]
+self_modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_0kfnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/MusicBeats6"]
+shape = SubResource("CircleShape2D_djxe8")
+
+[connection signal="finished" from="sprites/AudioStreamPlayer" to="sprites" method="_on_audio_stream_player_finished"]

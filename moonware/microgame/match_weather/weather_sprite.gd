@@ -13,7 +13,6 @@ extends Area2D
 
 func drop():
 	var overlap = get_overlapping_areas()
-	print(overlap)
 	if len(overlap) != 0:
 		var held_body = overlap[0]
 		global_position = held_body.global_position + Vector2(50,-50)
