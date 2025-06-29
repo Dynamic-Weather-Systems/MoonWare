@@ -30,7 +30,6 @@ expand_mode = 5
 
 [node name="MainMenuPage" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,7 +56,11 @@ theme_override_constants/margin_bottom = 38
 layout_mode = 2
 size_flags_vertical = 1
 theme = SubResource("Theme_ujtui")
-theme_override_constants/outline_size = 10
+theme_override_colors/font_color = Color(1, 0.811765, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.214291, 0.16191, 0.0134429, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/font_size = 100
 text = "The IDIOT Box"
 horizontal_alignment = 1
@@ -92,6 +95,7 @@ text = "> QUIT"
 
 [node name="OptionsPage" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,6 +140,7 @@ text = "> BACK"
 
 [node name="GameOverPage" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -41,6 +41,14 @@ uniform bool clip_warp = false;
 uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
 uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
 
+
+uniform bool wobble = true; // Toggle the wobble effect
+uniform float wobble_speed : hint_range(0.0, 20.0) = 6.0; // Speed of the wobble wave
+uniform float wobble_strength : hint_range(0.0, 1) = 0.03; // Intensity of the displacement
+uniform float wobble_frequency : hint_range(0.0, 30.0) = 10.0; // Number of sine cycles across the screen
+
+
+
 // Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
 vec2 random(vec2 uv){
     uv = vec2( dot(uv, vec2(127.1,311.7) ),
@@ -91,6 +99,16 @@ float vignette(vec2 uv){
 void fragment()
 {
 	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
+	if (wobble) {
+		float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength * (uv.x-0.5);
+		if (uv.x < 0.5) {
+			uv.x += abs(wobble_offset);
+		} else {
+			uv.x -= abs(wobble_offset);
+		}
+
+	}
+
 	vec2 text_uv = uv;
 	vec2 roll_uv = vec2(0.0);
 	float time = roll ? TIME : 0.0;

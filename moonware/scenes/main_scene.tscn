@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=20 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_p1kej"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://gehatss5kps2" path="res://scenes/health_ui.tscn" id="11_kn0e1"]
 [ext_resource type="AudioStream" uid="uid://bvj05oxdwgkjy" path="res://Assets/SFX/tv-static-noise-291374.mp3" id="11_orsa2"]
 [ext_resource type="AudioStream" uid="uid://dxwmy3meiev8q" path="res://Assets/SFX/arcade-ride-vens-adams-main-version-27955-01-45.mp3" id="12_lgb03"]
+[ext_resource type="AudioStream" uid="uid://dt2k4yfl0horf" path="res://Assets/SFX/crt-computer-monitor-startup-100657.mp3" id="13_mqlxp"]
+[ext_resource type="AudioStream" uid="uid://bhi5q3ixjh2jh" path="res://Assets/SFX/vinyl-crackle-real-69409.mp3" id="14_d1oer"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_os521"]
 shader = ExtResource("3_a3ver")
@@ -33,10 +35,14 @@ shader_parameter/static_noise_intensity = 0.1
 shader_parameter/aberration = 0.00500005
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.0
+shader_parameter/warp_amount = 1.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/wobble = false
+shader_parameter/wobble_speed = 20.0
+shader_parameter/wobble_strength = 0.207
+shader_parameter/wobble_frequency = 5.108
 
 [sub_resource type="Animation" id="Animation_sc2y5"]
 resource_name = "DEFAULT"
@@ -124,6 +130,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -4.0
+offset_right = -6.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -212,6 +222,12 @@ stream = ExtResource("11_orsa2")
 
 [node name="MainMenuTheme" type="AudioStreamPlayer" parent="AudioPlayers"]
 stream = ExtResource("12_lgb03")
+
+[node name="CRTTurnOnSound" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("13_mqlxp")
+
+[node name="CrackleSound" type="AudioStreamPlayer" parent="AudioPlayers"]
+stream = ExtResource("14_d1oer")
 
 [node name="HealthUI" parent="." instance=ExtResource("11_kn0e1")]
 offset_left = 59.0
