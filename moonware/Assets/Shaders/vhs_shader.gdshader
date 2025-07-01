@@ -46,6 +46,7 @@ uniform bool wobble = true; // Toggle the wobble effect
 uniform float wobble_speed : hint_range(0.0, 20.0) = 6.0; // Speed of the wobble wave
 uniform float wobble_strength : hint_range(0.0, 1) = 0.03; // Intensity of the displacement
 uniform float wobble_frequency : hint_range(0.0, 30.0) = 10.0; // Number of sine cycles across the screen
+uniform float channel_switch_time = 0.0;
 
 
 
@@ -100,13 +101,20 @@ void fragment()
 {
 	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
 	if (wobble) {
-		float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength * (uv.x-0.5);
-		if (uv.x < 0.5) {
-			uv.x += abs(wobble_offset);
-		} else {
-			uv.x -= abs(wobble_offset);
-		}
+		//float t = TIME - channel_switch_time;
+		//float burst = exp(-t * 5.0); // Fast decay
+		//float burst_wobble = sin(uv.y * 100.0 + t * 60.0) * burst * 0.04;
+		//uv.x += burst_wobble;
 
+		float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength;
+		//float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength * (uv.x-0.5);
+		//if (uv.x < 0.5) {
+			//uv.x += abs(wobble_offset);
+		//} else {
+			//uv.x -= abs(wobble_offset);
+		//}
+		//float wobble_offset = (sin(uv.y * wobble_frequency + TIME * wobble_speed) + sin(uv.y * wobble_frequency - TIME * wobble_speed)) * wobble_strength;
+		uv.x += wobble_offset;
 	}
 
 	vec2 text_uv = uv;
@@ -139,18 +147,21 @@ void fragment()
 		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to
 		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
 		// and intensify it a bit in the roll distortion.
-		text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
-		text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		//text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		//text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		//text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		text.r = textureLod(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1, 0.0).r;
+		text.g = textureLod(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1, 0.0).g;
+		text.b = textureLod(SCREEN_TEXTURE, text_uv + roll_uv, 0.0).b;
 		text.a = 1.0;
 	}
 	else
 	{
 		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only
 		// to make the slider in the Inspector less sensitive.
-		text.r = texture(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
-		text.b = texture(SCREEN_TEXTURE, text_uv).b;
+		text.r = textureLod(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1, 0.0).r;
+		text.g = textureLod(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1, 0.0).g;
+		text.b = textureLod(SCREEN_TEXTURE, text_uv, 0.0).b;
 		text.a = 1.0;
 	}
 
