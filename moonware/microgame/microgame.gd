@@ -4,14 +4,18 @@
 #
 # Holds the behaviour and functionality of microgames.
 # 
-# Microgames should have 3 states: PAUSED -> IDLE -> PLAYING -> (emit signals to end)
+# Microgames should have 3 states: [PAUSED] -> IDLE -> PLAYING -> (emit signals to end)
 # 		[PAUSED]: (Loaded but not shown) When a microgame is loaded into the main scene, it will be
 #			loaded in this state. The microgame should be hidden and generally not be running any
-#			functionality.
+#			functionality. Sets process and input handling to false. ("_process", 
+#			"_physics_process", "_input", "_uhandled_input" will not run).
 # 		IDLE: (Loaded and showing but not playable). When the minigame is being displayed on screen,
 # 			along with the instructions on how to play the microgame. This state should generally
-#			be processing "idle" animations and other such behaviours.
-# 		PLAYING: (Fully playable and interactable).
+#			be processing "idle" animations and other such behaviours. Sets process to false, and 
+#			input to true. ("_process", "_physics_process" will run but "_input", "_uhandled_input" 
+#			will not run).
+# 		PLAYING: (Fully playable and interactable). Sets process and input to true. ("_process",
+#			"_physics_process" will run but "_input", "_uhandled_input" will run).
 
 extends Node2D
 class_name Microgame
