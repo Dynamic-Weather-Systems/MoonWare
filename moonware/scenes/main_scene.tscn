@@ -43,6 +43,7 @@ shader_parameter/wobble = false
 shader_parameter/wobble_speed = 20.0
 shader_parameter/wobble_strength = 0.207
 shader_parameter/wobble_frequency = 5.108
+shader_parameter/channel_switch_time = 0.0
 
 [sub_resource type="Animation" id="Animation_sc2y5"]
 resource_name = "DEFAULT"

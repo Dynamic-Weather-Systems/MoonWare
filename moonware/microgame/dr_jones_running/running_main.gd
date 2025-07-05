@@ -1,18 +1,27 @@
+# Running game where you click to outrun a boulder
+# Sanjit Patil and Sujit Patil
+# Created 2025
+
 extends Microgame
 
-@export var boulder_speed = 100 # speed of the boulder
+@export var boulder_scene: PackedScene
 var has_won = false # checks if the signals have been emited
 var has_lost = false # checks if the signals have been emited
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+# Called once when the state is set to PLAYING
+func set_state_playing() -> void:
 	super() # calls the _ready function of microgame main
+	assert(boulder_scene != null)
+	var boulder_instance = boulder_scene.instantiate()
+	boulder_instance.position = Vector2(-184,234)
+	add_child(boulder_instance)
 	$indiana/TextureProgressBar.max_value = game_length # sets up the progress bar
 	countdown.start() # starts the timer
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func process_playing():
+	super()
 	if $indiana: # if indiana node exists
 		$indiana/TextureProgressBar.value = countdown.time_left # update the progress bar
 

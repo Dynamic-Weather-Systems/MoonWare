@@ -71,7 +71,7 @@ func _unhandled_input(event: InputEvent) -> void:
 # Behaviour of the title sequence
 func titleSequence():
 	set_power_mode('static')
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(static_timer).timeout
 	set_power_mode("on")
 	
 	#TODO - Create a title sequence here
@@ -158,7 +158,7 @@ func minigame_won():
 	isPlaying = false
 	score += 1
 	highScore = max(score, highScore)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(static_timer).timeout
 	set_power_mode('on')
 	currentMinigame = start_new_minigame()
 

@@ -6,7 +6,6 @@ var direction = 0 # direction of the player
 var old_pos # keeps track of how far the player has moved
 
 func _ready() -> void:
-	$animated.play("default") # the default running animation
 	old_pos = global_position # keeps track of how far the player has moved
 
 
