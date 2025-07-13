@@ -4,7 +4,7 @@ extends Microgame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super() # calls the _ready function of microgame main
-	$end_message.text = ''
+	$EndMessage.text = ''
 	
 	var labels = $texts.get_children()
 	var sprites = $sprites.get_children()
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _on_countdown_timeout():
-	$background_setup.hide()
+	$BackgroundSetup.hide()
 	$texts.hide()
 	$sprites.hide()
 	
@@ -41,14 +41,14 @@ func _on_countdown_timeout():
 	
 	if won:
 		$sounds/win.play()
-		$end_message.text = win_message
+		$EndMessage.text = win_message
 	else:
 		$sounds/lose.play()
-		$end_message.text = lose_message
+		$EndMessage.text = lose_message
 
 
 func _on_background_finished() -> void:
-	$background_setup/back_music.play()
+	$sounds/background.play()
 
 
 func _on_win_finished() -> void:

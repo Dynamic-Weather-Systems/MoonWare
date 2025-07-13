@@ -7,6 +7,7 @@ class_name Microgame
 
 ## The name of your game.
 @export var game_name := 'game name'
+@export var channel_name := 'channel name'
 
 ## Give a short description of your game, how to win/lose, controls, etc.
 @export_multiline var game_description := 'description'

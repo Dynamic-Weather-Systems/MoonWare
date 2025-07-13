@@ -16,9 +16,10 @@ size = Vector2(60, 60)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xn6yg"]
 radius = 1.0
 
-[node name="weather_main" type="Node2D"]
+[node name="WeatherMain" type="Node2D"]
 script = ExtResource("1_7saca")
 game_name = "Match the weather"
+channel_name = "The Channel Weather"
 game_description = "match the weather icon to the description"
 game_length = 10
 win_message = "The Cycle Continues"
@@ -29,7 +30,7 @@ texture = ExtResource("2_w7ry1")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="end_message" type="Label" parent="."]
+[node name="EndMessage" type="Label" parent="."]
 offset_left = 36.0
 offset_top = 102.0
 offset_right = 220.0
@@ -44,10 +45,10 @@ autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="background_setup" type="Node2D" parent="."]
+[node name="BackgroundSetup" type="Node2D" parent="."]
 metadata/_edit_group_ = true
 
-[node name="bottom_box" type="Sprite2D" parent="background_setup"]
+[node name="BottomBox" type="Sprite2D" parent="BackgroundSetup"]
 modulate = Color(0.424931, 0.424931, 0.424931, 1)
 self_modulate = Color(0, 0.0862745, 0.552941, 1)
 position = Vector2(-18, 353)
@@ -56,7 +57,7 @@ texture = ExtResource("4_cr7g0")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="top_box" type="Sprite2D" parent="background_setup"]
+[node name="TopBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(1, 1, 0.737255, 1)
 position = Vector2(-3, 5)
 scale = Vector2(1.05844, 0.234568)
@@ -67,7 +68,7 @@ region_enabled = true
 region_rect = Rect2(48, 122, 462, 243)
 metadata/_edit_lock_ = true
 
-[node name="city_name" type="Label" parent="background_setup"]
+[node name="CityName" type="Label" parent="BackgroundSetup"]
 offset_left = 131.0
 offset_top = -2.0
 offset_right = 333.0
@@ -79,7 +80,7 @@ text = "New Fork City
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="extended forecast" type="Label" parent="background_setup"]
+[node name="ExtendedForecase" type="Label" parent="BackgroundSetup"]
 self_modulate = Color(1, 1, 0, 1)
 offset_left = 147.0
 offset_top = 34.0
@@ -92,7 +93,7 @@ text = "Extended Forecast
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="date" type="Label" parent="background_setup"]
+[node name="date" type="Label" parent="BackgroundSetup"]
 offset_left = 381.0
 offset_top = 12.0
 offset_right = 467.0
@@ -104,14 +105,14 @@ horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="logo" type="Sprite2D" parent="background_setup"]
+[node name="logo" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0, 1, 0.733333, 1)
 position = Vector2(54, 28)
 scale = Vector2(0.389474, 1.2)
 texture = ExtResource("3_piypt")
 metadata/_edit_lock_ = true
 
-[node name="logo text" type="Label" parent="background_setup"]
+[node name="LogoText" type="Label" parent="BackgroundSetup"]
 offset_left = 21.0
 offset_top = 4.0
 offset_right = 97.0
@@ -127,7 +128,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="Mon_box" type="Sprite2D" parent="background_setup"]
+[node name="MonBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(61, 201)
 rotation = 1.5708
@@ -136,7 +137,7 @@ texture = ExtResource("3_piypt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="background_setup/Mon_box"]
+[node name="Label" type="Label" parent="BackgroundSetup/MonBox"]
 offset_left = -85.3333
 offset_top = 19.5
 offset_right = -45.3333
@@ -147,7 +148,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Tue_box" type="Sprite2D" parent="background_setup"]
+[node name="TueBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(166, 201)
 rotation = 1.5708
@@ -156,7 +157,7 @@ texture = ExtResource("3_piypt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="background_setup/Tue_box"]
+[node name="Label" type="Label" parent="BackgroundSetup/TueBox"]
 offset_left = -85.3333
 offset_top = 19.5
 offset_right = -45.3333
@@ -167,7 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Wed_box" type="Sprite2D" parent="background_setup"]
+[node name="WedBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(270, 201)
 rotation = 1.5708
@@ -176,7 +177,7 @@ texture = ExtResource("3_piypt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="background_setup/Wed_box"]
+[node name="Label" type="Label" parent="BackgroundSetup/WedBox"]
 offset_left = -85.3333
 offset_top = 19.5
 offset_right = -45.3333
@@ -187,7 +188,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Thu_box" type="Sprite2D" parent="background_setup"]
+[node name="ThuBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(370, 201)
 rotation = 1.5708
@@ -196,7 +197,7 @@ texture = ExtResource("3_piypt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="background_setup/Thu_box"]
+[node name="Label" type="Label" parent="BackgroundSetup/ThuBox"]
 offset_left = -85.3333
 offset_top = 19.5
 offset_right = -45.3333
@@ -207,7 +208,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Fri_box" type="Sprite2D" parent="background_setup"]
+[node name="FriBox" type="Sprite2D" parent="BackgroundSetup"]
 self_modulate = Color(0.151101, 0.399688, 1, 1)
 position = Vector2(477, 201)
 rotation = 1.5708
@@ -216,7 +217,7 @@ texture = ExtResource("3_piypt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="background_setup/Fri_box"]
+[node name="Label" type="Label" parent="BackgroundSetup/FriBox"]
 offset_left = -85.3333
 offset_top = 19.5
 offset_right = -45.3333
@@ -346,56 +347,56 @@ shape = SubResource("RectangleShape2D_annwg")
 
 [node name="sprites" type="Node2D" parent="."]
 
-[node name="sunny_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
+[node name="SunnySprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(167, 370)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 metadata/_edit_group_ = true
 
-[node name="cloudy_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
+[node name="CloudySprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(66, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" parent="sprites/cloudy_sprite" index="1"]
+[node name="Sprite2D" parent="sprites/CloudySprite" index="1"]
 region_rect = Rect2(475, 40, 100, 70)
 
-[node name="partly_cloudy_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
+[node name="PartlyCloudySprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(268, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" parent="sprites/partly_cloudy_sprite" index="1"]
+[node name="Sprite2D" parent="sprites/PartlyCloudySprite" index="1"]
 region_rect = Rect2(325, 40, 100, 70)
 
-[node name="showers_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
+[node name="ShowersSprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(375, 367)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" parent="sprites/showers_sprite" index="1"]
+[node name="Sprite2D" parent="sprites/ShowersSprite" index="1"]
 region_rect = Rect2(175, 359, 100, 88)
 
-[node name="stormy_sprite" parent="sprites" instance=ExtResource("5_aldbu")]
+[node name="StormySprite" parent="sprites" instance=ExtResource("5_aldbu")]
 position = Vector2(478, 368)
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" parent="sprites/stormy_sprite" index="1"]
+[node name="Sprite2D" parent="sprites/StormySprite" index="1"]
 region_rect = Rect2(475, 190, 100, 95)
 
-[node name="mouse_detection" type="Area2D" parent="."]
+[node name="MouseDetection" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 monitorable = false
 script = ExtResource("6_uibyj")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetection"]
 shape = SubResource("CircleShape2D_xn6yg")
 
 [node name="sounds" type="Node2D" parent="."]
@@ -414,8 +415,8 @@ autoplay = true
 [connection signal="finished" from="sounds/lose" to="." method="_on_lose_finished"]
 [connection signal="finished" from="sounds/background" to="." method="_on_background_finished"]
 
-[editable path="sprites/sunny_sprite"]
-[editable path="sprites/cloudy_sprite"]
-[editable path="sprites/partly_cloudy_sprite"]
-[editable path="sprites/showers_sprite"]
-[editable path="sprites/stormy_sprite"]
+[editable path="sprites/SunnySprite"]
+[editable path="sprites/CloudySprite"]
+[editable path="sprites/PartlyCloudySprite"]
+[editable path="sprites/ShowersSprite"]
+[editable path="sprites/StormySprite"]
