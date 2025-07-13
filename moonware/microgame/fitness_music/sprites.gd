@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _on_audio_stream_player_finished() -> void:
-	%AudioStreamPlayer.play()
+	%BackgroundMusic.play()
 
 
 func _input(event: InputEvent) -> void:
