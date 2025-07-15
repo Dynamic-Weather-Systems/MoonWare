@@ -325,16 +325,32 @@ libraries = {
 [node name="OnBeatChecker" type="Area2D" parent="MusicNotes"]
 unique_name_in_owner = true
 position = Vector2(68, 57)
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="MusicNotes/OnBeatChecker"]
-self_modulate = Color(0, 0, 0, 0.482353)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/OnBeatChecker"]
+shape = SubResource("RectangleShape2D_xgemn")
+
+[node name="logo" type="Sprite2D" parent="MusicNotes/OnBeatChecker"]
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.315789, 1.22449)
 texture = ExtResource("8_05qy6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicNotes/OnBeatChecker"]
-visible = false
-shape = SubResource("RectangleShape2D_xgemn")
+[node name="ChannelName" type="Label" parent="MusicNotes/OnBeatChecker"]
+offset_left = -31.0
+offset_top = -28.0
+offset_right = 28.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.191923, 1, 1)
+theme_override_constants/line_spacing = -3
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 14
+text = "20 MIN
+Aerobics
+Fitness"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OffBeatChecker" type="Area2D" parent="MusicNotes"]
 position = Vector2(-17, 0)

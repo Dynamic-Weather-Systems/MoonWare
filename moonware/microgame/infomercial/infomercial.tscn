@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://f0q0euub0sf6"]
+
+[ext_resource type="Script" path="res://microgame/infomercial/infomercial.gd" id="1_t5reb"]
+
+[node name="Infomercial" type="Node2D"]
+script = ExtResource("1_t5reb")
+game_name = "Infomercial"
+win_message = "you won"
+lose_message = "you lost"
