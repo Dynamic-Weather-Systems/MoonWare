@@ -5,7 +5,6 @@ extends Node
 @export_group("Microgames")
 ## Level Resource, contains packed scene of microgames
 @export var microgames: LevelResouce
-
 @export_group("Node References")
 ## Rect that has the VSH Shader
 @export var VHSShaderRect: ColorRect
@@ -15,22 +14,30 @@ extends Node
 @export var HealthUI: Control
 ## Main Menu UI
 @export var MainMenu: Control
-
-
+## Static Timer
+@export var StaticTimer: Timer
 @export_subgroup("Audio Node References")
 ## Static Noise sfx
 @export var StaticNoiseFX: AudioStreamPlayer
 ##Main Menu theme
 @export var MainMenuTheme: AudioStreamPlayer
+@export_subgroup("Expernal Node References")
+@export var TitleSequence: PackedScene
+@export_group("Game Constants")
+## How long to play the Static Effect (seconds)
+@export var static_time: float = 1.0
 #endregion
 
-
+#region Scene functionality Variables
 # Check if game has started, used to start Title Sequence
 var gameStarted: bool = false
 # instance of the currently loaded minigame
 var currentMinigame: Microgame = null
 # Boolean player minigame status
-var isPlaying: bool = false
+var inMinigame: bool = false
+#endregion
+
+#region Player Stats
 # Score
 var highScore: int = 0
 var score: int = 0
@@ -39,25 +46,21 @@ var startTime: int = 0
 var endTime: int = 0
 # Channel count
 var channelCount: int = 0
-
-
-## How long to play static (seconds)
-@export var static_timer: float = 1.0
+#endregion
 
 
 # Startup function
 func _ready() -> void:
-	# Display the "Press Anny Button" label on a blank screen.
-	%PressAnyButtonLabel.show()
+	#Set Random Seed
+	randomize()
+	
+	# Setup Screen
 	MainMenu.hide()
 	set_power_mode("off")
 	Screen.show()
-	
-	# Pick Random Seed
-	randomize()
+	%PressAnyButtonLabel.show()
 
 
-# Runs for any input event that hasn't been terminated
 func _unhandled_input(event: InputEvent) -> void:
 	# Run title sequence if game not started and key is pressed
 	if not gameStarted:
@@ -65,22 +68,46 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			gameStarted = true
 			%PressAnyButtonLabel.queue_free()
-			titleSequence()
+			await run_title_sequence()
+			
+			# Display Main Menu
+			set_power_mode("static")
+			MainMenu.show()
+			await finish_static()
+			MainMenuTheme.play()
 
 
-# Behaviour of the title sequence
-func titleSequence():
+func run_title_sequence():
+	set_power_mode("static")
+	var title_sequence = TitleSequence.instantiate()
+	await finish_static()
+	Screen.add_child(title_sequence)
+	await title_sequence.finished
+	title_sequence.queue_free()
+
+
+func _on_main_menu_ui_start_game() -> void:
+	start_new_game()
+
+func start_new_game() -> void:
+	startTime = Time.get_ticks_msec()
+	endTime = 0
+	channelCount = 0
+	score = 0
+	HealthUI.hearts = HealthUI.max_hearts
+	MainMenu.hide()
+	MainMenuTheme.stop()
 	set_power_mode('static')
-	await get_tree().create_timer(static_timer).timeout
-	set_power_mode("on")
 	
-	#TODO - Create a title sequence here
-	
-	#Main Menu
-	MainMenu.show()
-	MainMenuTheme.play()
+	await finish_static()
 
 
+func load_next_minigame() -> void:
+	pass
+
+
+
+#region Controls VHS shader
 # Changes the Power mode of the TV Screen
 func set_power_mode(mode: String):
 	if mode == "off":
@@ -99,8 +126,6 @@ func set_power_mode(mode: String):
 		set_VHS_param("roll", true)
 		set_VHS_param("roll_size", 15)
 		return
-		
-	# if static mode must be used, use await so the timer is allowed to fully finish 
 	if mode == "static":
 		set_VHS_param("static_noise_intensity", 1)
 		set_VHS_param("roll", true)
@@ -109,75 +134,42 @@ func set_power_mode(mode: String):
 			StaticNoiseFX.play()
 		Screen.hide()
 		%BlankScreenRect.hide()
+		static_timer_finished = false
+		static_scene_loaded = false
+		StaticTimer.start(static_time)
 
-# Easy syntax to change vhs shader parameters
+# Shorthand for changing VHS shader parameters
 func set_VHS_param(param: String, value):
 	assert(VHSShaderRect)
 	VHSShaderRect.material.set_shader_parameter(param, value)
+#endregion
+
+#region Handling Static transitions
+signal static_transition_finished
+var static_timer_finished:bool = false:
+	set(value):
+		static_timer_finished = value
+		if (value==true):
+			on_static_scene_handler()
+var static_scene_loaded:bool = false:
+	set(value):
+		static_scene_loaded = value
+		if (value==true):
+			on_static_scene_handler()
 
 
-# Starts the game
-func _on_main_menu_ui_start_game() -> void:
-	startTime = Time.get_ticks_msec()
-	endTime = 0
-	channelCount = 0
-	score = 0
-	HealthUI.hearts = HealthUI.max_hearts
-	MainMenu.hide()
-	MainMenuTheme.stop()
-	set_power_mode('static')
-	await get_tree().create_timer(1).timeout
+func on_static_scene_handler() -> void:
+	if static_timer_finished and static_scene_loaded:
+		static_transition_finished.emit()
+
+
+func _on_static_timer_timeout() -> void:
+	if static_timer_finished==false:
+		static_timer_finished=true
+
+func finish_static() -> void:
+	static_scene_loaded = true
+	await static_transition_finished
 	set_power_mode('on')
-	currentMinigame = start_new_minigame()
 
-
-func start_new_minigame():
-	assert(isPlaying==false)
-	
-	channelCount += 1
-	
-	if currentMinigame:
-		currentMinigame.queue_free()
-		currentMinigame = null
-	
-	isPlaying = true
-	
-	var minigameIdx = randi() % len(microgames.minigamePackedScenes)
-	var minigameInstance = microgames.minigamePackedScenes[minigameIdx].instantiate()
-	minigameInstance.win_game.connect(minigame_won)
-	minigameInstance.lose_game.connect(minigame_lost)
-	Screen.add_child(minigameInstance)
-	return minigameInstance
-
-
-func minigame_won():
-	if not isPlaying:
-		return
-	
-	set_power_mode('static')
-	isPlaying = false
-	score += 1
-	highScore = max(score, highScore)
-	await get_tree().create_timer(static_timer).timeout
-	set_power_mode('on')
-	currentMinigame = start_new_minigame()
-
-func minigame_lost():
-	if not isPlaying:
-		return
-	
-	isPlaying = false
-	HealthUI.hearts -= 1
-	
-	set_power_mode('static')
-	await get_tree().create_timer(1).timeout
-	set_power_mode('on')
-	if HealthUI.hearts > 0:
-		currentMinigame = start_new_minigame()
-	else:
-		currentMinigame.queue_free()
-		currentMinigame = null
-		MainMenu.show()
-		endTime = Time.get_ticks_msec()
-		var watchTime = endTime - startTime
-		MainMenu.game_over(score, highScore, watchTime, channelCount)
+#endregion

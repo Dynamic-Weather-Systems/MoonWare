@@ -47,7 +47,10 @@ uniform float wobble_speed : hint_range(0.0, 20.0) = 6.0; // Speed of the wobble
 uniform float wobble_strength : hint_range(0.0, 1) = 0.03; // Intensity of the displacement
 uniform float wobble_frequency : hint_range(0.0, 30.0) = 10.0; // Number of sine cycles across the screen
 uniform float channel_switch_time = 0.0;
-
+// Apply discoloration to get a VHS look (lower saturation and higher contrast)
+// You can play with the values below or expose them in the Inspector.
+uniform float saturation = 0.5;
+uniform float contrast = 1.2;
 
 
 // Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
@@ -106,7 +109,7 @@ void fragment()
 		//float burst_wobble = sin(uv.y * 100.0 + t * 60.0) * burst * 0.04;
 		//uv.x += burst_wobble;
 
-		float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength;
+		float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) *0.1* wobble_strength;
 		//float wobble_offset = sin(uv.y * wobble_frequency + TIME * wobble_speed) * wobble_strength * (uv.x-0.5);
 		//if (uv.x < 0.5) {
 			//uv.x += abs(wobble_offset);
@@ -234,10 +237,7 @@ void fragment()
 		text.a = border(uv);
 	}
 
-	// Apply discoloration to get a VHS look (lower saturation and higher contrast)
-	// You can play with the values below or expose them in the Inspector.
-	float saturation = 0.5;
-	float contrast = 1.2;
+
 	if (discolor)
 	{
 		// Saturation

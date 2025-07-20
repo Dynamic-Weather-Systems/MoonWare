@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=21 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
-[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_p1kej"]
+[ext_resource type="Script" path="res://scenes/main_scene2.gd" id="1_fxsom"]
 [ext_resource type="Resource" uid="uid://dtaitvocgkqff" path="res://Resources/TestLevel1.tres" id="2_a7ua1"]
 [ext_resource type="Texture2D" uid="uid://b8h1go2aktdv8" path="res://Assets/Art/television.png" id="2_glg3e"]
 [ext_resource type="Shader" path="res://Assets/Shaders/vhs_shader.gdshader" id="3_a3ver"]
+[ext_resource type="PackedScene" uid="uid://bldsls4804dkh" path="res://scenes/title_sequence.tscn" id="3_b40dw"]
 [ext_resource type="FontFile" uid="uid://0q6xrqv3t4l8" path="res://Assets/Fonts/blue_screen/Blue Screen Personal Use.ttf" id="6_53b12"]
 [ext_resource type="PackedScene" uid="uid://dlt5rg7vye25q" path="res://scenes/main_menu_ui.tscn" id="7_xctaq"]
 [ext_resource type="Texture2D" uid="uid://dtf2y0nbffmbo" path="res://Assets/Art/Untitled(1).jpg" id="8_4ujhg"]
@@ -41,9 +42,11 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/wobble = false
 shader_parameter/wobble_speed = 20.0
-shader_parameter/wobble_strength = 0.207
-shader_parameter/wobble_frequency = 5.108
+shader_parameter/wobble_strength = 0.15
+shader_parameter/wobble_frequency = 30.0
 shader_parameter/channel_switch_time = 0.0
+shader_parameter/saturation = 0.5
+shader_parameter/contrast = 1.2
 
 [sub_resource type="Animation" id="Animation_sc2y5"]
 resource_name = "DEFAULT"
@@ -82,15 +85,17 @@ _data = {
 "RESET": SubResource("Animation_dfqaa")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticNoiseFX", "MainMenuTheme")]
-script = ExtResource("1_p1kej")
+[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticTimer", "StaticNoiseFX", "MainMenuTheme")]
+script = ExtResource("1_fxsom")
 microgames = ExtResource("2_a7ua1")
 VHSShaderRect = NodePath("TVControl/MarginContainer/AllScreen/VHSShaderRect")
 Screen = NodePath("TVControl/MarginContainer/AllScreen/Screen")
 HealthUI = NodePath("HealthUI")
 MainMenu = NodePath("TVControl/MarginContainer/AllScreen/Screen/MainMenuUI")
+StaticTimer = NodePath("StaticTimer")
 StaticNoiseFX = NodePath("AudioPlayers/StaticNoise")
 MainMenuTheme = NodePath("AudioPlayers/MainMenuTheme")
+TitleSequence = ExtResource("3_b40dw")
 
 [node name="BlackRoom" type="Sprite2D" parent="."]
 texture = ExtResource("1_5n1j4")
@@ -126,6 +131,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VHSShaderRect" type="ColorRect" parent="TVControl/MarginContainer/AllScreen"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_os521")
 layout_mode = 1
 anchors_preset = 15
@@ -149,7 +155,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.129412, 0.27451, 0.14902, 1)
+color = Color(0.0745098, 0.12549, 0.184314, 1)
 
 [node name="Screen" type="Control" parent="TVControl/MarginContainer/AllScreen"]
 z_index = -1
@@ -164,6 +170,7 @@ mouse_filter = 2
 
 [node name="MainMenuUI" parent="TVControl/MarginContainer/AllScreen/Screen" instance=ExtResource("7_xctaq")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="Screenshot2025-06-24200206" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
@@ -237,4 +244,8 @@ offset_right = 59.0
 offset_bottom = 571.0
 scale = Vector2(3, 3)
 
+[node name="StaticTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="start_game" from="TVControl/MarginContainer/AllScreen/Screen/MainMenuUI" to="." method="_on_main_menu_ui_start_game"]
+[connection signal="timeout" from="StaticTimer" to="." method="_on_static_timer_timeout"]

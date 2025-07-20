@@ -88,7 +88,7 @@ func set_minigame_state(new_state: int) -> void:
 # Behaviour for the state to be idle
 func set_state_paused() -> void:
 	assert(game_name)
-	#hide()
+	hide()
 	get_tree().call_group(game_name, "set_process", false)
 	get_tree().call_group(game_name, "set_physics_process", false)
 	get_tree().call_group(game_name, "set_process_input", false)
@@ -102,12 +102,19 @@ func set_state_idle() -> void:
 	show()
 	get_tree().call_group(game_name, "set_process", true)
 	get_tree().call_group(game_name, "set_physics_process", true)
-	get_tree().call_group(game_name, "set_process_input", true)
-	get_tree().call_group(game_name, "set_process_unhandled_input", true)
+	get_tree().call_group(game_name, "set_process_input", false)
+	get_tree().call_group(game_name, "set_process_unhandled_input", false)
 
 
 # Behaviour for the state to be idle
 func set_state_playing() -> void:
+	assert(game_name)
+	show()
+	get_tree().call_group(game_name, "set_process", true)
+	get_tree().call_group(game_name, "set_physics_process", true)
+	get_tree().call_group(game_name, "set_process_input", false)
+	get_tree().call_group(game_name, "set_process_unhandled_input", false)
+	
 	# adds a timer to each minigame
 	add_child(countdown)
 	countdown.timeout.connect(_on_countdown_timeout)
