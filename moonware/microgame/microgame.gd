@@ -55,7 +55,7 @@ func _ready() -> void:
 	for child in get_children():
 		child.add_to_group(game_name)
 		
-	set_minigame_state(PAUSED)
+	set_minigame_state(PLAYING)
 
 
 func _process(delta: float) -> void:
@@ -112,8 +112,8 @@ func set_state_playing() -> void:
 	show()
 	get_tree().call_group(game_name, "set_process", true)
 	get_tree().call_group(game_name, "set_physics_process", true)
-	get_tree().call_group(game_name, "set_process_input", false)
-	get_tree().call_group(game_name, "set_process_unhandled_input", false)
+	get_tree().call_group(game_name, "set_process_input", true)
+	get_tree().call_group(game_name, "set_process_unhandled_input", true)
 	
 	# adds a timer to each minigame
 	add_child(countdown)

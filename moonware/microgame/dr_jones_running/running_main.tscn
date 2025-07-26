@@ -1,6 +1,7 @@
-[gd_scene load_steps=73 format=3 uid="uid://b8ambg17ap7ae"]
+[gd_scene load_steps=74 format=3 uid="uid://b8ambg17ap7ae"]
 
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_main.gd" id="1_ju8ao"]
+[ext_resource type="PackedScene" uid="uid://ceh1vdjtqmx32" path="res://microgame/dr_jones_running/running_rock.tscn" id="2_dc6rl"]
 [ext_resource type="Texture2D" uid="uid://bytn102h8va70" path="res://Assets/Art/lava-cave-wall.jpg" id="2_i75os"]
 [ext_resource type="Texture2D" uid="uid://bvnrts7e3gxw3" path="res://Assets/Art/stalactite-and-stalagmite-isolated-on-transparent-background-png-edited.png" id="4_7d17j"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_indiana.gd" id="5_pp7yv"]
@@ -468,6 +469,7 @@ height = 110.0
 
 [node name="running_main" type="Node2D"]
 script = ExtResource("1_ju8ao")
+boulder_scene = ExtResource("2_dc6rl")
 game_name = "running"
 
 [node name="cave" type="Sprite2D" parent="."]
@@ -558,4 +560,9 @@ centered = false
 flip_v = true
 region_rect = Rect2(81, 0, 480, 400)
 
+[node name="boulder" parent="." instance=ExtResource("2_dc6rl")]
+position = Vector2(-184, 234)
+
 [connection signal="animation_finished" from="indiana/animated" to="." method="_on_jones_explosion_finished"]
+[connection signal="body_entered" from="boulder" to="." method="_on_boulder_body_entered"]
+[connection signal="explosion_finished" from="boulder" to="." method="_on_rock_explosion_finished"]

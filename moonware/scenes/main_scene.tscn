@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://w4fkroo78can"]
+[gd_scene load_steps=20 format=3 uid="uid://w4fkroo78can"]
 
 [ext_resource type="Texture2D" uid="uid://cjh6ymwxvvcos" path="res://Assets/Art/black room.jpg" id="1_5n1j4"]
 [ext_resource type="Script" path="res://scenes/main_scene2.gd" id="1_fxsom"]
@@ -8,9 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bldsls4804dkh" path="res://scenes/title_sequence.tscn" id="3_b40dw"]
 [ext_resource type="FontFile" uid="uid://0q6xrqv3t4l8" path="res://Assets/Fonts/blue_screen/Blue Screen Personal Use.ttf" id="6_53b12"]
 [ext_resource type="PackedScene" uid="uid://dlt5rg7vye25q" path="res://scenes/main_menu_ui.tscn" id="7_xctaq"]
-[ext_resource type="Texture2D" uid="uid://dtf2y0nbffmbo" path="res://Assets/Art/Untitled(1).jpg" id="8_4ujhg"]
-[ext_resource type="Texture2D" uid="uid://bp0cn67rdlwlf" path="res://Assets/Art/Screenshot 2025-06-24 200205.png" id="9_34xxg"]
 [ext_resource type="Script" path="res://scenes/Default_scripts/animation_player.gd" id="9_fjfyb"]
+[ext_resource type="PackedScene" uid="uid://bv4brqq7yssl3" path="res://scenes/channel_overlay.tscn" id="10_5p3c6"]
 [ext_resource type="PackedScene" uid="uid://gehatss5kps2" path="res://scenes/health_ui.tscn" id="11_kn0e1"]
 [ext_resource type="AudioStream" uid="uid://bvj05oxdwgkjy" path="res://Assets/SFX/tv-static-noise-291374.mp3" id="11_orsa2"]
 [ext_resource type="AudioStream" uid="uid://dxwmy3meiev8q" path="res://Assets/SFX/arcade-ride-vens-adams-main-version-27955-01-45.mp3" id="12_lgb03"]
@@ -85,7 +84,7 @@ _data = {
 "RESET": SubResource("Animation_dfqaa")
 }
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticTimer", "StaticNoiseFX", "MainMenuTheme")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("VHSShaderRect", "Screen", "HealthUI", "MainMenu", "StaticTimer", "ChannelOverlay", "StaticNoiseFX", "MainMenuTheme")]
 script = ExtResource("1_fxsom")
 microgames = ExtResource("2_a7ua1")
 VHSShaderRect = NodePath("TVControl/MarginContainer/AllScreen/VHSShaderRect")
@@ -93,6 +92,7 @@ Screen = NodePath("TVControl/MarginContainer/AllScreen/Screen")
 HealthUI = NodePath("HealthUI")
 MainMenu = NodePath("TVControl/MarginContainer/AllScreen/Screen/MainMenuUI")
 StaticTimer = NodePath("StaticTimer")
+ChannelOverlay = NodePath("TVControl/MarginContainer/AllScreen/Screen/ChannelOverlay")
 StaticNoiseFX = NodePath("AudioPlayers/StaticNoise")
 MainMenuTheme = NodePath("AudioPlayers/MainMenuTheme")
 TitleSequence = ExtResource("3_b40dw")
@@ -173,13 +173,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="Screenshot2025-06-24200206" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
-visible = false
-modulate = Color(1, 1, 1, 0.243137)
-position = Vector2(262.687, 191)
-scale = Vector2(0.477952, 0.477952)
-texture = ExtResource("9_34xxg")
-
 [node name="PressAnyButtonLabel" type="Label" parent="TVControl/MarginContainer/AllScreen/Screen"]
 unique_name_in_owner = true
 visible = false
@@ -202,16 +195,9 @@ libraries = {
 }
 script = ExtResource("9_fjfyb")
 
-[node name="Untitled(1)" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
+[node name="ChannelOverlay" parent="TVControl/MarginContainer/AllScreen/Screen" instance=ExtResource("10_5p3c6")]
 visible = false
-texture = ExtResource("8_4ujhg")
-centered = false
-
-[node name="Screenshot2025-06-24200205" type="Sprite2D" parent="TVControl/MarginContainer/AllScreen/Screen"]
-visible = false
-scale = Vector2(0.55192, 0.55192)
-texture = ExtResource("9_34xxg")
-centered = false
+layout_mode = 1
 
 [node name="TVTextureRect" type="TextureRect" parent="."]
 z_index = 2

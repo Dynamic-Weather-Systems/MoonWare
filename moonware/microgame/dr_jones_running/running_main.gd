@@ -8,14 +8,16 @@ extends Microgame
 var has_won = false # checks if the signals have been emited
 var has_lost = false # checks if the signals have been emited
 
+func _ready() -> void:
+	super()
 
 # Called once when the state is set to PLAYING
 func set_state_playing() -> void:
 	super() # calls the _ready function of microgame main
-	assert(boulder_scene != null)
-	var boulder_instance = boulder_scene.instantiate()
-	boulder_instance.position = Vector2(-184,234)
-	add_child(boulder_instance)
+	#assert(boulder_scene != null)
+	#var boulder_instance = boulder_scene.instantiate()
+	#boulder_instance.position = Vector2(-184,234)
+	#add_child(boulder_instance)
 	$indiana/TextureProgressBar.max_value = game_length # sets up the progress bar
 	countdown.start() # starts the timer
 

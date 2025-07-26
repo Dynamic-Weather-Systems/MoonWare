@@ -16,6 +16,8 @@ extends Node
 @export var MainMenu: Control
 ## Static Timer
 @export var StaticTimer: Timer
+## Channel Overlay
+@export var ChannelOverlay: ChannelOverlayClass
 @export_subgroup("Audio Node References")
 ## Static Noise sfx
 @export var StaticNoiseFX: AudioStreamPlayer
@@ -68,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			gameStarted = true
 			%PressAnyButtonLabel.queue_free()
-			await run_title_sequence()
+			#await run_title_sequence()
 			
 			# Display Main Menu
 			set_power_mode("static")
@@ -97,14 +99,40 @@ func start_new_game() -> void:
 	HealthUI.hearts = HealthUI.max_hearts
 	MainMenu.hide()
 	MainMenuTheme.stop()
+	transition_minigames()
+
+
+func transition_minigames() -> void:
 	set_power_mode('static')
+	load_next_minigame()
+	currentMinigame.set_minigame_state(currentMinigame.PAUSED)
+	currentMinigame.show()
+	await finish_static()    
 	
-	await finish_static()
+	ChannelOverlay.display(currentMinigame)
+	await ChannelOverlay.overlay_displayed
+	currentMinigame.set_minigame_state(currentMinigame.PLAYING)
 
 
 func load_next_minigame() -> void:
-	pass
+	if currentMinigame != null:
+		currentMinigame.queue_free()
+		currentMinigame = null
+	var instance = microgames.minigamePackedScenes.pick_random().instantiate()
+	currentMinigame = instance
+	Screen.add_child(instance)
+	currentMinigame.win_game.connect(minigame_won)
+	currentMinigame.lose_game.connect(minigame_lost)
+	instance.show()
 
+
+func minigame_won() -> void:
+	print('Minigame_won')
+	transition_minigames()
+
+func minigame_lost() -> void:
+	print('Minigame_lost')
+	transition_minigames()
 
 
 #region Controls VHS shader
