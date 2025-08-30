@@ -1,8 +1,9 @@
-[gd_scene load_steps=74 format=3 uid="uid://b8ambg17ap7ae"]
+[gd_scene load_steps=75 format=3 uid="uid://b8ambg17ap7ae"]
 
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_main.gd" id="1_ju8ao"]
 [ext_resource type="PackedScene" uid="uid://ceh1vdjtqmx32" path="res://microgame/dr_jones_running/running_rock.tscn" id="2_dc6rl"]
 [ext_resource type="Texture2D" uid="uid://bytn102h8va70" path="res://Assets/Art/lava-cave-wall.jpg" id="2_i75os"]
+[ext_resource type="Texture2D" uid="uid://cwdkgeluwqoix" path="res://icon.svg" id="3_ib6lw"]
 [ext_resource type="Texture2D" uid="uid://bvnrts7e3gxw3" path="res://Assets/Art/stalactite-and-stalagmite-isolated-on-transparent-background-png-edited.png" id="4_7d17j"]
 [ext_resource type="Script" path="res://microgame/dr_jones_running/running_indiana.gd" id="5_pp7yv"]
 [ext_resource type="Texture2D" uid="uid://dh1coe3qmfhmt" path="res://Assets/Art/d1c4mut-6db0241c-6952-42d2-8d49-793f34733d25.png" id="5_srgow"]
@@ -471,6 +472,10 @@ height = 110.0
 script = ExtResource("1_ju8ao")
 boulder_scene = ExtResource("2_dc6rl")
 game_name = "running"
+program_name = "Rocky VV"
+channel_num = "046"
+channel_logo = ExtResource("3_ib6lw")
+program_message = "An ordinary man and an ordinary boulder try to see if they can become something extraodinary."
 
 [node name="cave" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -500,6 +505,7 @@ sprite_frames = SubResource("SpriteFrames_5brnx")
 shape = SubResource("CapsuleShape2D_qdpmj")
 
 [node name="TextureProgressBar" parent="indiana" instance=ExtResource("10_vkq1r")]
+visible = false
 z_index = 1
 offset_left = -437.0
 offset_top = -342.0

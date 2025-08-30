@@ -27,14 +27,20 @@ var state: int
 @export_group("Microgame Info")
 ## The name of your game.
 @export var game_name : String
+## How long your game runs for in seconds.
+@export var game_length : int = 4
 ## Give a short description of your game, how to win/lose, controls, etc.
 @export_multiline var game_description : String
 
-@export_group("Microgame Settings")
-## How long your game runs for in seconds.
-@export var game_length : int = 4
+@export_group("Channel Settings")
+## The Name of the program being displayed on the channel.
+@export var program_name : String
+## The channel number of your channel, must be 3 digits long (can add trailing/leading zeroes).
+@export var channel_num : String
+## The Channel Logo of the channel that the minigame appears on.
+@export var channel_logo : Texture2D
 ## The short message that briefly shows when your game starts. Try to limit its length to under 30 characters.
-@export var message : String = "Message!"
+@export_multiline var program_message : String = "Message!"
 
 # creates a new timer for the minigame
 @onready var countdown = Timer.new()
@@ -55,7 +61,7 @@ func _ready() -> void:
 	for child in get_children():
 		child.add_to_group(game_name)
 		
-	set_minigame_state(PLAYING)
+	set_minigame_state(PAUSED)
 
 
 func _process(delta: float) -> void:

@@ -55,7 +55,7 @@ var channelCount: int = 0
 func _ready() -> void:
 	#Set Random Seed
 	randomize()
-	
+		
 	# Setup Screen
 	MainMenu.hide()
 	set_power_mode("off")
@@ -107,10 +107,10 @@ func transition_minigames() -> void:
 	load_next_minigame()
 	currentMinigame.set_minigame_state(currentMinigame.PAUSED)
 	currentMinigame.show()
-	await finish_static()    
+	await finish_static()
 	
-	ChannelOverlay.display(currentMinigame)
-	await ChannelOverlay.overlay_displayed
+	await ChannelOverlay.display(currentMinigame)
+	#currentMinigame.show()
 	currentMinigame.set_minigame_state(currentMinigame.PLAYING)
 
 

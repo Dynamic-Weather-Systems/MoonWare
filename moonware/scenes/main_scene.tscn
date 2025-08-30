@@ -98,12 +98,12 @@ MainMenuTheme = NodePath("AudioPlayers/MainMenuTheme")
 TitleSequence = ExtResource("3_b40dw")
 
 [node name="BlackRoom" type="Sprite2D" parent="."]
+z_index = -4096
 texture = ExtResource("1_5n1j4")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="TVControl" type="Control" parent="."]
-z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +113,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TVControl"]
-z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,6 +131,7 @@ mouse_filter = 2
 
 [node name="VHSShaderRect" type="ColorRect" parent="TVControl/MarginContainer/AllScreen"]
 unique_name_in_owner = true
+z_index = 4000
 material = SubResource("ShaderMaterial_os521")
 layout_mode = 1
 anchors_preset = 15
@@ -158,7 +158,6 @@ mouse_filter = 2
 color = Color(0.0745098, 0.12549, 0.184314, 1)
 
 [node name="Screen" type="Control" parent="TVControl/MarginContainer/AllScreen"]
-z_index = -1
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -197,10 +196,11 @@ script = ExtResource("9_fjfyb")
 
 [node name="ChannelOverlay" parent="TVControl/MarginContainer/AllScreen/Screen" instance=ExtResource("10_5p3c6")]
 visible = false
+z_index = 1
 layout_mode = 1
 
 [node name="TVTextureRect" type="TextureRect" parent="."]
-z_index = 2
+z_index = 4000
 offset_left = 108.0
 offset_right = 2028.0
 offset_bottom = 1292.0
