@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="LevelResouce" load_steps=3 format=3 uid="uid://dtaitvocgkqff"]
+[gd_resource type="Resource" script_class="LevelResouce" load_steps=4 format=3 uid="uid://dtaitvocgkqff"]
 
 [ext_resource type="Script" path="res://Resources/LevelResource.gd" id="1_rljx8"]
 [ext_resource type="PackedScene" uid="uid://b8ambg17ap7ae" path="res://microgame/dr_jones_running/running_main.tscn" id="1_sa118"]
+[ext_resource type="PackedScene" uid="uid://rqyn43lvt264" path="res://microgame/fitness_music/fitness_main.tscn" id="2_gddm2"]
 
 [resource]
 script = ExtResource("1_rljx8")
-minigamePackedScenes = Array[PackedScene]([ExtResource("1_sa118")])
+minigamePackedScenes = Array[PackedScene]([ExtResource("1_sa118"), ExtResource("2_gddm2")])

@@ -11,15 +11,28 @@ var has_lost = false # checks if the signals have been emited
 func _ready() -> void:
 	super()
 
+
+func set_state_paused():
+	super()
+	%boulder.state = PAUSED
+
+
+func set_state_idle():
+	super()
+	%boulder.state = IDLE
+
+
+
 # Called once when the state is set to PLAYING
 func set_state_playing() -> void:
 	super() # calls the _ready function of microgame main
-	assert(boulder_scene != null)
-	var boulder_instance = boulder_scene.instantiate()
-	boulder_instance.position = Vector2(-184,234)
-	add_child(boulder_instance)
+	#assert(boulder_scene != null)
+	#var boulder_instance = boulder_scene.instantiate()
+	#boulder_instance.position = Vector2(-184,234)
+	#add_child(boulder_instance)
 	$indiana/TextureProgressBar.max_value = game_length # sets up the progress bar
 	countdown.start() # starts the timer
+	%boulder.state = PLAYING
 
 
 func process_playing():
@@ -37,7 +50,8 @@ func _on_boulder_body_entered(body: Node2D) -> void:
 func _on_countdown_timeout():
 	if !has_won and !has_lost: #checks if any signals have been emmited
 		has_won = true # has emitedd win signal
-		$boulder/animated.play("explode") # start explode animation
+		print("boulder exploded nerd")
+		$boulder.explode() # start explode animation
 		$boulder/animated.scale = Vector2(7,7) # increase scale so explosion is correct size
 
 func _on_rock_explosion_finished() -> void:

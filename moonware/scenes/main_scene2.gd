@@ -106,11 +106,10 @@ func transition_minigames() -> void:
 	set_power_mode('static')
 	load_next_minigame()
 	currentMinigame.set_minigame_state(currentMinigame.PAUSED)
-	currentMinigame.show()
 	await finish_static()
 	
+	currentMinigame.set_minigame_state(currentMinigame.IDLE)
 	await ChannelOverlay.display(currentMinigame)
-	#currentMinigame.show()
 	currentMinigame.set_minigame_state(currentMinigame.PLAYING)
 
 

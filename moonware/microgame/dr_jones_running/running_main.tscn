@@ -493,6 +493,10 @@ centered = false
 flip_h = true
 region_rect = Rect2(81, 0, 480, 400)
 
+[node name="boulder" parent="." instance=ExtResource("2_dc6rl")]
+unique_name_in_owner = true
+position = Vector2(-184, 234)
+
 [node name="indiana" type="CharacterBody2D" parent="."]
 position = Vector2(437, 342)
 script = ExtResource("5_pp7yv")
@@ -566,9 +570,6 @@ centered = false
 flip_v = true
 region_rect = Rect2(81, 0, 480, 400)
 
-[node name="boulder" parent="." instance=ExtResource("2_dc6rl")]
-position = Vector2(-184, 234)
-
-[connection signal="animation_finished" from="indiana/animated" to="." method="_on_jones_explosion_finished"]
 [connection signal="body_entered" from="boulder" to="." method="_on_boulder_body_entered"]
 [connection signal="explosion_finished" from="boulder" to="." method="_on_rock_explosion_finished"]
+[connection signal="animation_finished" from="indiana/animated" to="." method="_on_jones_explosion_finished"]

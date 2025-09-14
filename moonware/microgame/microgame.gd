@@ -62,6 +62,8 @@ func _ready() -> void:
 		child.add_to_group(game_name)
 		
 	set_minigame_state(PAUSED)
+	#set_minigame_state(PLAYING)
+	#set_minigame_state(IDLE)
 
 
 func _process(delta: float) -> void:
