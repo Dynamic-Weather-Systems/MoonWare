@@ -1,9 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://f0q0euub0sf6"]
+[gd_scene load_steps=7 format=3 uid="uid://f0q0euub0sf6"]
 
 [ext_resource type="Script" path="res://microgame/infomercial/infomercial.gd" id="1_t5reb"]
+[ext_resource type="Script" path="res://microgame/infomercial/mouse_area.gd" id="2_tvref"]
+[ext_resource type="AudioStream" uid="uid://1d03ffqeotyi" path="res://Assets/SFX/188713__waveplaysfx__media-happy-effect-2.wav" id="3_y385o"]
+[ext_resource type="AudioStream" uid="uid://cmuu6uanf1bof" path="res://Assets/SFX/806666__johnjohnfm__basic-riser-glitch.wav" id="4_q00m0"]
+[ext_resource type="AudioStream" uid="uid://dfg04wysv5thq" path="res://Assets/SFX/234126__zagi2__chord-bassline-loop.wav" id="5_htqb4"]
 
-[node name="Infomercial" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlfym"]
+radius = 20.0
+
+[node name="Infomercial_main" type="Node2D"]
 script = ExtResource("1_t5reb")
-game_name = "Infomercial"
-win_message = "you won"
-lose_message = "you lost"
+game_name = "Infomertial"
+channel_name = "Buy This!"
+game_description = "Don't buy the infomercial"
+game_length = 10
+win_message = "Heart of Steel!"
+lose_message = "Resist the Devil's Temptation!"
+
+[node name="EndMessage" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 36.0
+offset_top = 102.0
+offset_right = 220.0
+offset_bottom = 179.0
+scale = Vector2(2.5, 2)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 20
+text = "END MESSAGE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MouseArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(156, 134)
+monitoring = false
+monitorable = false
+script = ExtResource("2_tvref")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("CircleShape2D_nlfym")
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="win" type="AudioStreamPlayer" parent="sounds"]
+unique_name_in_owner = true
+stream = ExtResource("3_y385o")
+
+[node name="lose" type="AudioStreamPlayer" parent="sounds"]
+unique_name_in_owner = true
+stream = ExtResource("4_q00m0")
+
+[node name="background" type="AudioStreamPlayer" parent="sounds"]
+unique_name_in_owner = true
+stream = ExtResource("5_htqb4")
+autoplay = true
+
+[connection signal="mouse_exited" from="MouseArea" to="." method="_on_mouse_area_mouse_exited"]
+[connection signal="finished" from="sounds/background" to="." method="_on_background_finished"]
